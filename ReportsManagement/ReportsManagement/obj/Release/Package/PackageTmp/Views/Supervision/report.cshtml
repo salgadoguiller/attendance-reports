@@ -1,0 +1,84 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Supervisión de envío.";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        List<WeeklyReportState> weeklyReports = (List<WeeklyReportState>)ViewData["weeklyReports"];
+        <div class="row col-md-8 col-md-offset-2">
+            <h2>Estado de envio: </h2>
+        </div>
+        <article>
+          <div class="table-responsive col-md-8 col-md-offset-2" style="clear:both">
+            <table class="table table-hover display responsive nowrap" id="date-table" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Tipo de Error</th>
+                    <th>Porcentaje</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                  @foreach ( WeeklyReportState wr in weeklyReports)
+                  {
+                        <tr>
+                            <td>@wr.StartDate.ToString("MM-dd-yyyy")</td>
+                            <td>@wr.EndDate.ToString("MM-dd-yyyy")</td>
+                            @switch(wr.TypeError)
+                            {
+                                case 0:
+                                    <td>Ninguno</td>
+                                    break;
+                                case 1:
+                                    <td>Base de datos</td>
+                                    break;
+                                case 2:
+                                    <td>Envío</td>
+                                    break;
+                            }
+                            <td>@wr.PercentReports%</td>
+                            @if(wr.StateReport == 0)
+                            {
+                                <td style="color: red;">No enviado</td>
+                                <td>
+                                    @Html.ActionLink("Reenviar", "forward", new { idRep = wr.Id, all = true}, new { @class = "btn btn-success btn-xs" })
+                                </td>
+                            }
+                            else
+                            {
+                                if (wr.StateReport == 1)
+                                {
+                                    <td style="color:green";>Enviado</td>
+                                    <td></td>
+                                }
+                                else
+                                {
+                                    <td>Parcialmente enviado</td>
+                                    <td>
+                                        @Html.ActionLink("Reenviar", "forward", new { idRep = wr.Id, all = false }, new { @class = "btn btn-success btn-xs" })
+                                        @Html.ActionLink("Ver detalles", "details", new { idRep = wr.Id }, new { @class = "btn btn-primary btn-xs" })
+                                    </td>
+                                }                                
+                            }
+                        </tr>   
+                  }
+              </tbody>
+            </table>
+          </div>
+        </article>        
+    }
+}
+
+@section scripts
+{
+    
+}

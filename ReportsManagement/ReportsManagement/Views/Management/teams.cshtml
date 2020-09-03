@@ -1,0 +1,145 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Equipos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if (!error)
+    {
+        List<Department> departments = (List<Department>)ViewData["departments"];
+        List<DepartmentMongo> departmentsMongo = (List<DepartmentMongo>)ViewData["departmentsMongo"];
+        List<Employee> allEmployees = (List<Employee>)ViewData["allEmployees"];
+        
+        <div class="row col-md-8 col-md-offset-2">
+            <div id="items">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Equipos: </h2>
+                    </div>
+                </div>
+                <article>
+                    <div class="table-responsive col-md-12" style="clear:both">
+                    <table class="table table-hover display responsive nowrap" id="date-table" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Equipo</th>
+                            <th>Responsable</th>
+                            <th>Correo</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var dept in departments)
+                            {
+                                if (dept.SupDeptid == 1)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => dept.DeptName)</td>
+                                        @{bool find = false;}
+                                        @foreach(DepartmentMongo deptMongo in departmentsMongo)
+                                        {
+                                            if(dept.Deptid == Convert.ToInt32(deptMongo.Id_Dept))
+                                            {
+                                                find = true;
+                                                <td>@Html.DisplayFor(modelItem => deptMongo.Name[0])</td>
+                                                <td>@Html.DisplayFor(modelItem => deptMongo.correo[0])</td>                                    
+                                            }
+                                
+                                        }
+                                        @if(!find)
+                                        {
+                                            <td></td>
+                                            <td></td>
+                                        }
+                                        <td>
+                                            @{string idPop = "popDepartment" + dept.Deptid;
+                                                int idAnchor = dept.Deptid;}
+                                            <button class="btn btn-primary btn-xs" onclick="subDepartmentsVerify('@idPop', '@dept.Deptid', '@idAnchor');" id="@idPop" data-toggle="popover" data-trigger="manual" data-placement="left" 
+                                            data-html="true" data-content="Este departamento no tiene ningun equipo.<br><br><button class='btn btn-primary btn-xs' onClick='clickBtn(@idAnchor);'>Agregar</button>"> Ver Equipos </button>
+                                            @Html.ActionLink("Ver Equipos", "department", new { idDept = dept.Deptid }, new { @class = "", @id = idAnchor, @style = "display: none;" })
+
+                                            @{idPop = "popEmployees" + dept.Deptid;
+                                                idAnchor = 1000000 + dept.Deptid;}
+                                            <button class="btn btn-primary btn-xs" onclick="haveEmployeesVerify('@idPop', '@dept.Deptid', '@idAnchor');" id="@idPop" data-toggle="popover" data-trigger="manual" data-placement="left" 
+                                            data-html="true" data-content="Este departamento no tiene ningun integrante.<br><br><button class='btn btn-primary btn-xs' onClick='clickBtn(@idAnchor)'>Agregar</button>"> Ver Integrantes </button>
+                                            @Html.ActionLink("Ver Integrantes", "employeesDepartment", new { idDept = dept.Deptid}, new { @class = "", @id = idAnchor, @style = "display: none;" })
+
+                                            @Html.ActionLink("Editar Departamento", "editDepartment", new { idDept = dept.Deptid }, new { @class = "btn btn-success btn-xs" })
+
+                                            @{string id = @dept.Deptid + "delete";}
+                                            @Html.ActionLink("Eliminar Departamento", "removeDepartment", new { idDept = dept.Deptid }, new { @class = "btn btn-danger btn-xs", @id = @id, @style = "display: none;" })
+                                            <button class="btn btn-danger btn-xs" onclick="validatePassword('Por favor ingrese su contraseña.', '@id');">Eliminar Departamento</button>
+                                        </td>
+                                    </tr>
+                                    continue;   
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => dept.DeptName)</td>
+                                        @{bool responsable = false;}
+                                        @{bool find = false;}
+                                        @foreach(DepartmentMongo deptMongo in departmentsMongo)
+                                        {
+                                            foreach (GetReportMongo teamMongo in deptMongo.GetReport)
+                                            {
+                                                if (dept.Deptid == Convert.ToInt32(teamMongo.deptID))
+                                                {
+                                                    find = true;
+                                                    <td>@Html.DisplayFor(modelItem => teamMongo.subName)</td>
+                                                    <td>@Html.DisplayFor(modelItem => teamMongo.subEmail)</td>                                        
+                                                    break;
+                                                }
+                                            }
+                                            if(dept.Deptid == Convert.ToInt32(deptMongo.Id_Dept))
+                                            {
+                                                find = true;
+                                                <td>@Html.DisplayFor(modelItem => deptMongo.Name[0])</td>
+                                                <td>@Html.DisplayFor(modelItem => deptMongo.correo[0])</td>                                    
+                                            }
+                                
+                                        }
+                                        @if(!find)
+                                        {
+                                            <td></td>
+                                            <td></td>
+                                        }
+                                        <td>
+                                            @{string idPop = "popTeams" + dept.Deptid;
+                                              int idAnchor = dept.Deptid;}
+                                            <button class="btn btn-primary btn-xs" onclick="subDepartmentsVerify('@idPop', '@dept.Deptid', '@idAnchor');" id="@idPop" data-toggle="popover" data-trigger="manual" data-placement="left" 
+                                            data-html="true" data-content="Este equipo no tiene ningun subequipo.<br><br><button class='btn btn-primary btn-xs' onClick='clickBtn(@idAnchor);'>Agregar</button>"> Ver Equipos </button>
+                                            @Html.ActionLink("Ver Equipos", "subTeams", new { idTeam = dept.Deptid }, new { @class = "", @id = idAnchor, @style = "display: none;" })
+
+                                            @{idPop = "popEmployees" + dept.Deptid;
+                                              idAnchor = 1000000 + dept.Deptid;}
+                                            <button class="btn btn-primary btn-xs" onclick="haveEmployeesVerify('@idPop', '@dept.Deptid', '@idAnchor');" id="@idPop" data-toggle="popover" data-trigger="manual" data-placement="left" 
+                                            data-html="true" data-content="Este equipo no tiene ningun integrante.<br><br><button class='btn btn-primary btn-xs'onClick='clickBtn(@idAnchor);'>Agregar</button>"> Ver Integrantes </button>
+                                            @Html.ActionLink("Ver Integrantes", "team", new { idTeam = dept.Deptid}, new { @class = "", @id = idAnchor, @style = "display: none;" })
+
+                                            @Html.ActionLink("Editar Equipo", "editTeam", new { idTeam = dept.Deptid, isDept = 1 }, new { @class = "btn btn-success btn-xs" })
+
+                                            @{string id = @dept.Deptid + "delete";}
+                                            @Html.ActionLink("Eliminar Equipo", "removeTeam", new { idSupDept = dept.SupDeptid, idTeam = dept.Deptid }, new { @class = "btn btn-danger btn-xs", @id = id, @style = "display: none;" })
+                                            <button class="btn btn-danger btn-xs" onclick="validatePassword('Por favor ingrese su contraseña.', '@id');">Eliminar Equipo</button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    </div>
+                </article>        
+            </div>
+        </div>
+    }
+}
+
+@section scripts
+{
+    
+}

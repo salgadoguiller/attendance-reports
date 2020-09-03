@@ -1,0 +1,268 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Detalles de envío";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        List<WeeklyReportDetail> weeklyReportsDetails = (List<WeeklyReportDetail>)ViewData["weeklyReportsDetails"];
+        <div class="row col-md-12">
+            <div class="navLog col-md-2" style="margin-top:25px">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active2" id="employeesli"><a href="#" onclick="showEmployees();">Empleados</a></li>
+                    <li role="presentation" id="teamsli"><a href="#" onclick="showTeams();">Equipos</a></li>
+                    <li role="presentation" id="departmentsli"><a href="#" onclick="showDepartments();">Departamentos</a></li>
+                    <li role="presentation" id="specialReportsli"><a href="#" onclick="showSpecialReports();">Reportes Especiales</a></li>
+                </ul>
+            </div>
+            <!-- Empleados -->
+            <div class="" id="employees">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Detalles del envio de reportes de empleados: </h2>
+                </div>
+                <div class="row col-md-8 col-md-offset-1">
+                    <div class="table-responsive" style="clear:both">
+                        <table class="table table-hover display responsive nowrap" id="date-table" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                                <th>Nombre Empleado</th>
+                                <th>Estado</th>
+                                <th>Tipo de error</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              @foreach (WeeklyReportDetail wrd in weeklyReportsDetails)
+                              {
+                                  if(wrd.TypeReport == 3)
+                                  {
+                                      <tr>
+                                          @{bool exist = false;}
+                                          @foreach(Employee emp in (List<Employee>)ViewData["employees"])
+                                          {
+                                              if(emp.Id == wrd.IdReceptor && wrd.TypeReport == 3)
+                                              {
+                                                  exist = true;
+                                                  <td>@emp.Name</td>
+                                                  break;    
+                                              }
+                                          }
+                                          @if (!exist)
+                                          {
+                                              <td style="color:red;">Eliminado</td>
+                                          }
+                                          @if(wrd.StateReport == 0)
+                                          {
+                                              <td style="color:red;">No enviado</td>
+                                          }
+                                          else
+                                          {
+                                              <td style="color:green;">Enviado</td>
+                                          }
+                                          @if(wrd.TypeError == 0)
+                                          {
+                                              <td>Ninguno</td>
+                                          }
+                                          else
+                                          {
+                                              <td>Envío</td>
+                                          }
+                                      </tr>
+                                  }
+                              }
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+            </div>
+        
+            <!-- Equipos -->
+            <div class="" id="teams" style="display:none">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Detalles del envio de reportes de equipos: </h2>
+                </div>
+                <div class="row col-md-8 col-md-offset-1">
+                    <div class="table-responsive" style="clear:both">
+                        <table class="table table-hover display responsive nowrap" id="date-table-2" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                                <th>Nombre Equipo</th>
+                                <th>Estado</th>
+                                <th>Tipo de error</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              @foreach (WeeklyReportDetail wrd in weeklyReportsDetails)
+                              {
+                                  if( wrd.TypeReport == 2)
+                                  {
+                                      <tr>
+                                          @{bool exist = false;}
+                                          @foreach (Department team in (List<Department>)ViewData["departments"])
+                                          {
+                                              if (Convert.ToInt32(team.Deptid) == wrd.IdReceptor && wrd.TypeReport == 2)
+                                              {
+                                                  exist = true;
+                                                  <td>@team.DeptName</td>
+                                                  break;
+                                              }
+                                          }
+                                          @if(!exist)
+                                          {
+                                              <td style="color:red;">Eliminado</td>
+                                          }
+                                          @if(wrd.StateReport == 0)
+                                          {
+                                              <td style="color:red;">No enviado</td>
+                                          }
+                                          else
+                                          {
+                                              <td style="color:green;">Enviado</td>
+                                          }
+                                          @if(wrd.TypeError == 0)
+                                          {
+                                              <td>Ninguno</td>
+                                          }
+                                          else
+                                          {
+                                              <td>Envío</td>
+                                          }
+                                      </tr>   
+                                  }
+                              }
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+            </div>
+        
+            <!-- Departamentos -->
+            <div class="" id="departments" style="display:none">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Detalles del envio de reportes de departamentos: </h2>
+                </div>
+                <div class="row col-md-8 col-md-offset-1">
+                    <div class="table-responsive" style="clear:both">
+                        <table class="table table-hover display responsive nowrap" id="date-table-3" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                                <th>Nombre Departamento</th>
+                                <th>Estado</th>
+                                <th>Tipo de error</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              @foreach (WeeklyReportDetail wrd in weeklyReportsDetails)
+                              {
+                                  if( wrd.TypeReport == 1 )
+                                  {
+                                      <tr>
+                                          @{bool exist = false;}
+                                          @foreach (Department dept in (List<Department>)ViewData["departments"])
+                                          {
+                                              if (Convert.ToInt32(dept.Deptid) == wrd.IdReceptor && wrd.TypeReport == 1)
+                                              {
+                                                  exist = true;
+                                                  <td>@dept.DeptName</td>   
+                                              }
+                                          }
+                                          @if(!exist)
+                                          {
+                                              <td style="color:red;">Eliminado</td>
+                                          }
+                                          @if(wrd.StateReport == 0)
+                                          {
+                                              <td style="color:red;">No enviado</td>
+                                          }
+                                          else
+                                          {
+                                              <td style="color:green;">Enviado</td>
+                                          }
+                                          @if(wrd.TypeError == 0)
+                                          {
+                                              <td style="color:red;">Ninguno</td>
+                                          }
+                                          else
+                                          {
+                                              <td style="color:green;">Envío</td>
+                                          }
+                                      </tr>   
+                                  }
+                              }
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+            </div>
+
+            <!-- Reportes Especiales -->
+            <div class="" id="specialReports" style="display:none">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Detalles del envio de reportes especiales: </h2>
+                </div>
+                <div class="row col-md-8 col-md-offset-1">
+                    <div class="table-responsive" style="clear:both">
+                        <table class="table table-hover display responsive nowrap" id="date-table-4" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                                <th>Nombre Empleado</th>
+                                <th>Estado</th>
+                                <th>Tipo de error</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              @foreach (WeeklyReportDetail wrd in weeklyReportsDetails)
+                              {
+                                  if(wrd.TypeReport == 0)
+                                  {
+                                      <tr>
+                                          @{bool exist = false;}
+                                          @foreach(Employee emp in (List<Employee>)ViewData["employees"])
+                                          {
+                                              if(emp.Id == wrd.IdReceptor && wrd.TypeReport == 0)
+                                              {
+                                                  exist = true;
+                                                  <td>@emp.Name</td>
+                                                  break;    
+                                              }
+                                          }
+                                          @if (!exist)
+                                          {
+                                              <td style="color:red;">Eliminado</td>
+                                          }
+                                          @if(wrd.StateReport == 0)
+                                          {
+                                              <td style="color:red;">No enviado</td>
+                                          }
+                                          else
+                                          {
+                                              <td style="color:green;">Enviado</td>
+                                          }
+                                          @if(wrd.TypeError == 0)
+                                          {
+                                              <td>Ninguno</td>
+                                          }
+                                          else
+                                          {
+                                              <td>Envío</td>
+                                          }
+                                      </tr>
+                                  }
+                              }
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+            </div>
+        </div>       
+    }
+}
+
+@section scripts
+{
+
+}

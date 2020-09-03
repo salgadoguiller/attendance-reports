@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+    ViewBag.Title = "Inicio de Sesión";
+}
+
+<div class="container centerXY">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" id="content-login">
+            <h4 style="border-bottom: 1px solid #c5c5c5;">
+                <span class="glyphicon glyphicon-tasks"></span>
+                Acceso al sistema:
+            </h4>
+            <div style="padding: 20px;" id="form-forget">
+                <form accept-charset="UTF-8" role="form" id="login-form" action="Login" method="post">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <h4 class="">
+                        Iniciar Sesión
+                    </h4>
+                    <fieldset>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <input class="form-control" placeholder="Usuario" name="UserName" type="text" required="" autofocus="">
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            <input class="form-control" placeholder="Contraseña" name="Password" type="password" value="" required="">
+                        </div>
+                        <div class="form-group input-group">
+                            <input type="checkbox" name="RememberMe" value=""> Recordar. <br>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block">
+                                Enviar
+                            </button>
+                            <p class="help-block">
+                                <a class="pull-right text-muted" href="#" id="forget"><small>¿Olvidaste tu contraseña?</small></a>
+                            </p>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div style="display: none; padding: 20px;" id="form-forget1">
+                <h4 class="">
+                    ¿Olvidaste tu contraseña?
+                </h4>
+                <form accept-charset="UTF-8" role="form" id="login-recover" method="post">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <fieldset>
+                        <p class="help-block">
+                            Introduce tu correo electrónico:
+                        </p>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <input class="form-control" placeholder="Correo Electrónico" name="email" type="email" required="">
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block" id="btn-forget">
+                            Enviar
+                        </button>
+                        <p class="help-block">
+                            <a class="text-muted pull-right" href="#" id="login"><small>Iniciar Sesión.</small></a>
+                        </p>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <!--
+    <script>
+        $(document).ready(function () {
+            $('#forget').click(function (e) {
+                e.preventDefault();
+                $('div#form-forget1').toggle('500');
+            });
+            $('#forget').click(function (e) {
+                e.preventDefault();
+                $('div#form-forget').toggle('500');
+            });
+            $('#login').click(function (e) {
+                e.preventDefault();
+                $('div#form-forget').toggle('500');
+            });
+            $('#login').click(function (e) {
+                e.preventDefault();
+                $('div#form-forget1').toggle('500');
+            });
+        });
+    </script>
+    -->
+}

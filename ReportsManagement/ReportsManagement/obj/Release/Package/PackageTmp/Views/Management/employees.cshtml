@@ -1,0 +1,177 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Empleados";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if (!error)
+    {
+        List<Employee> employees = (List<Employee>)ViewData["employees"];
+        List<Department> departments = (List<Department>)ViewData["departments"];
+        <div class="row col-md-12">
+            <!--
+            <div class="navLog col-md-2" style="margin-top:25px">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active2" id="itemsli"><a href="#" onclick="showItems();">Ver</a></li>
+                    <li role="presentation" id="createli"><a href="#" onclick="showCreate();">Crear</a></li>
+                </ul>
+            </div>
+            -->
+            <div class="col-md-10 col-md-offset-1">
+                <!--
+                <div class="col-md-12" id="create" style="display:none;">
+                    <br /><br />
+                    <form class="form-horizontal" method="POST" action="newEmployee" id="formAdd">
+                        <div class="form-group">
+                            <label for="inputText" class="col-sm-2 control-label">Nombre Empleado: </label>
+                            <div class="col-sm-10" id="popName" data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Debe ingresar un nombre.">
+                                <input type="text" class="form-control" placeholder="Nombre" value="" name="name" id="name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputText" class="col-sm-2 control-label">Correo Electrónico: </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="Nombre" value="" name="name" id="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="select" class="col-sm-2 control-label">Equipo: </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="idResponsable" id="responsable">
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-2">
+                                <button type="button" class="btn btn-success" onclick="validateFormAdd('name','formAdd','popName');">Agregar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                -->
+
+                <div id="items">
+                    <div class="row col-md-12">
+                        <div class="col-md-10">
+                            <h2>Empleados: </h2>
+                        </div>
+                    </div>
+                    <article>
+                        <div class="table-responsive col-md-12" style="clear:both">
+                            <table class="table table-hover display responsive nowrap" id="date-table" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Equipo</th>
+                                    <th>Departamento</th>
+                                    <th>Responsable De</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var emp in employees)
+                                    {
+                                        <tr>
+                                            @if (emp.Name == "" && emp.TeamId == 33 )
+                                            {
+                                                <td>Visit</td>
+                                                <td>Visit</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@emp.Name</td>
+                                                <td>@emp.Email</td>                                                
+                                            }
+                                            @{ int idDept = -1;}
+                                            @{ bool existTeam = false;}
+                                            @{ bool existDept = false;}
+                                            @{ bool isResponsable = false;}
+                                            @{ string resp = "";}
+                                            @foreach (var team in (List<Department>)@ViewData["teams"])
+                                            {
+                                                if (emp.TeamId == Convert.ToInt32(team.Deptid))
+                                                {
+                                                    existTeam = true;
+                                                    idDept = team.SupDeptid;
+                                                    <td>@team.DeptName</td>
+                                                    break;
+                                                }
+                                            }
+                                            @foreach (var team in (List<Department>)@ViewData["teams"])
+                                            {
+                                                if (idDept == Convert.ToInt32(team.Deptid))
+                                                {
+                                                    existDept = true;
+                                                    if (team.SupDeptid == 1)
+                                                    {
+                                                        <td style="color:green;">@team.DeptName</td>                                            
+                                                    }
+                                                    else
+                                                    {
+                                                        if (team.SupDeptid == 0)
+                                                        {
+                                                            <td style="color:green"><strong>@team.DeptName</strong></td>                                            
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@team.DeptName</td>
+                                                        }
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            @if (!existDept)
+                                            {
+                                                <td></td>
+                                            }
+                                            @if (!existTeam)
+                                            {
+                                                <td></td>
+                                            }
+                                            @foreach (var team in (List<Department>)@ViewData["teams"])
+                                            {
+                                                foreach(string s in emp.ResponsableOf)
+                                                {
+                                                    if (s == Convert.ToString(team.Deptid))
+                                                    {
+                                                        isResponsable = true;
+                                                        resp = resp + ", " + team.DeptName;
+                                                    }                                                
+                                                }
+                                            }
+                                            @{
+                                                if (resp.StartsWith(","))
+                                                {
+                                                    resp = resp.Substring(1);
+                                                }
+                                            }
+                                            <td><strong>@resp</strong></td>
+                                            <td>
+                                                @Html.ActionLink("Editar Empleado", "editEmployee", new { id = emp.Id, isTeam = 0 }, new { @class = "btn btn-success btn-xs" })
+                                                @Html.ActionLink("Eliminar Empleado", "deleteEmployee", new { id = emp.Id, isTeam = 0 }, new { @class = "btn btn-danger btn-xs", @id = emp.Id, @style = "display: none;" })
+                                                <button class="btn btn-danger btn-xs" onclick="validatePassword('Por favor ingrese su contraseña.', @emp.Id);">Eliminar Empleado</button>
+                                                @Html.ActionLink("Asistencia", "attendance", new { id = emp.Id }, new { @class = "btn btn-primary btn-xs" })
+                                            </td>
+                                        </tr>
+        
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section scripts
+{
+
+}

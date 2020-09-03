@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Anviz_Data_BaseModelStoreContainer" CdmEntityContainer="Anviz_Data_BaseEntities">
+    <FunctionImportMapping FunctionImportName="GetEmployes" FunctionName="Anviz_Data_BaseModel.Store.GetEmployes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.GetEmployes_Result">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Hora_de_LLegada_Lunes" ColumnName="Hora de LLegada Lunes" />
+          <ScalarProperty Name="Hora_de_salida_Lunes" ColumnName="Hora de salida Lunes" />
+          <ScalarProperty Name="Monday" ColumnName="Monday" />
+          <ScalarProperty Name="Hora_de_LLegada_Martes" ColumnName="Hora de LLegada Martes" />
+          <ScalarProperty Name="Hora_de_salida_Martes" ColumnName="Hora de salida Martes" />
+          <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+          <ScalarProperty Name="Hora_de_LLegada_Miercoles" ColumnName="Hora de LLegada Miercoles" />
+          <ScalarProperty Name="Hora_de_salida_Miercoles" ColumnName="Hora de salida Miercoles" />
+          <ScalarProperty Name="Wednsday" ColumnName="Wednsday" />
+          <ScalarProperty Name="Hora_de_LLegada_Jueves" ColumnName="Hora de LLegada Jueves" />
+          <ScalarProperty Name="Hora_de_salida_Jueves" ColumnName="Hora de salida Jueves" />
+          <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+          <ScalarProperty Name="Hora_de_LLegada_Viernes" ColumnName="Hora de LLegada Viernes" />
+          <ScalarProperty Name="Hora_de_salida_Viernes" ColumnName="Hora de salida Viernes" />
+          <ScalarProperty Name="Friday" ColumnName="Friday" />
+          <ScalarProperty Name="Hora_de_LLegada_Sabado" ColumnName="Hora de LLegada Sabado" />
+          <ScalarProperty Name="Hora_de_salida_Sabado" ColumnName="Hora de salida Sabado" />
+          <ScalarProperty Name="Saturday" ColumnName="Saturday" />
+          <ScalarProperty Name="Hora_de_LLegada_Domingo" ColumnName="Hora de LLegada Domingo" />
+          <ScalarProperty Name="Hora_de_salida_Domingo" ColumnName="Hora de salida Domingo" />
+          <ScalarProperty Name="Sunday" ColumnName="Sunday" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_AllDepartmetsBK" FunctionName="Anviz_Data_BaseModel.Store.SP_AllDepartmetsBK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.SP_AllDepartmetsBK_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Dept" ColumnName="Id_Dept" />
+          <ScalarProperty Name="Nombre_Dept" ColumnName="Nombre_Dept" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="TypeAction" ColumnName="TypeAction" />
+          <ScalarProperty Name="DateAction" ColumnName="DateAction" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_AllEmployees" FunctionName="Anviz_Data_BaseModel.Store.SP_AllEmployees">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.SP_AllEmployees_Result">
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="Deptid" ColumnName="Deptid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_AllEmployeesBK" FunctionName="Anviz_Data_BaseModel.Store.SP_AllEmployeesBK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.SP_AllEmployeesBK_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="Deptid" ColumnName="Deptid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TypeAction" ColumnName="TypeAction" />
+          <ScalarProperty Name="DateAction" ColumnName="DateAction" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_AllTeamsBK" FunctionName="Anviz_Data_BaseModel.Store.SP_AllTeamsBK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.SP_AllTeamsBK_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Dept" ColumnName="Id_Dept" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="Subdept" ColumnName="Subdept" />
+          <ScalarProperty Name="SubEmail" ColumnName="SubEmail" />
+          <ScalarProperty Name="SubName" ColumnName="SubName" />
+          <ScalarProperty Name="TypeAction" ColumnName="TypeAction" />
+          <ScalarProperty Name="DateAction" ColumnName="DateAction" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Anviz_Data_BaseModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Anviz_Data_BaseModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="SP_DeleteEmployee" FunctionName="Anviz_Data_BaseModel.Store.SP_DeleteEmployee" />
+    <FunctionImportMapping FunctionImportName="SP_DepartmentBK" FunctionName="Anviz_Data_BaseModel.Store.SP_DepartmentBK" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Anviz_Data_BaseModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="SP_Employee" FunctionName="Anviz_Data_BaseModel.Store.SP_Employee">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.SP_Employee_Result">
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="Deptid" ColumnName="Deptid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_EmployeeBK" FunctionName="Anviz_Data_BaseModel.Store.SP_EmployeeBK" />
+    <FunctionImportMapping FunctionImportName="SP_EndEstateDepartmentBK" FunctionName="Anviz_Data_BaseModel.Store.SP_EndEstateDepartmentBK" />
+    <FunctionImportMapping FunctionImportName="SP_EndEstateEmployeeBK" FunctionName="Anviz_Data_BaseModel.Store.SP_EndEstateEmployeeBK" />
+    <FunctionImportMapping FunctionImportName="SP_EndEstateTeamBK" FunctionName="Anviz_Data_BaseModel.Store.SP_EndEstateTeamBK" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Anviz_Data_BaseModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Anviz_Data_BaseModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_matrix_weekdays" FunctionName="Anviz_Data_BaseModel.Store.sp_matrix_weekdays">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.sp_matrix_weekdays_Result">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Hora_de_LLegada_Lunes" ColumnName="Hora de LLegada Lunes" />
+          <ScalarProperty Name="Hora_de_salida_Lunes" ColumnName="Hora de salida Lunes" />
+          <ScalarProperty Name="Monday" ColumnName="Monday" />
+          <ScalarProperty Name="Hora_de_LLegada_Martes" ColumnName="Hora de LLegada Martes" />
+          <ScalarProperty Name="Hora_de_salida_Martes" ColumnName="Hora de salida Martes" />
+          <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+          <ScalarProperty Name="Hora_de_LLegada_Miercoles" ColumnName="Hora de LLegada Miercoles" />
+          <ScalarProperty Name="Hora_de_salida_Miercoles" ColumnName="Hora de salida Miercoles" />
+          <ScalarProperty Name="Wednsday" ColumnName="Wednsday" />
+          <ScalarProperty Name="Hora_de_LLegada_Jueves" ColumnName="Hora de LLegada Jueves" />
+          <ScalarProperty Name="Hora_de_salida_Jueves" ColumnName="Hora de salida Jueves" />
+          <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+          <ScalarProperty Name="Hora_de_LLegada_Viernes" ColumnName="Hora de LLegada Viernes" />
+          <ScalarProperty Name="Hora_de_salida_Viernes" ColumnName="Hora de salida Viernes" />
+          <ScalarProperty Name="Friday" ColumnName="Friday" />
+          <ScalarProperty Name="Hora_de_LLegada_Sabado" ColumnName="Hora de LLegada Sabado" />
+          <ScalarProperty Name="Hora_de_salida_Sabado" ColumnName="Hora de salida Sabado" />
+          <ScalarProperty Name="Saturday" ColumnName="Saturday" />
+          <ScalarProperty Name="Hora_de_LLegada_Domingo" ColumnName="Hora de LLegada Domingo" />
+          <ScalarProperty Name="Hora_de_salida_Domingo" ColumnName="Hora de salida Domingo" />
+          <ScalarProperty Name="Sunday" ColumnName="Sunday" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Anviz_Data_BaseModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="SP_RollBackEmployeeDeleted" FunctionName="Anviz_Data_BaseModel.Store.SP_RollBackEmployeeDeleted" />
+    <FunctionImportMapping FunctionImportName="SP_SearchDepartmentBK" FunctionName="Anviz_Data_BaseModel.Store.SP_SearchDepartmentBK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.SP_SearchDepartmentBK_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Dept" ColumnName="Id_Dept" />
+          <ScalarProperty Name="Nombre_Dept" ColumnName="Nombre_Dept" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="TypeAction" ColumnName="TypeAction" />
+          <ScalarProperty Name="DateAction" ColumnName="DateAction" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SearchEmployeeBK" FunctionName="Anviz_Data_BaseModel.Store.SP_SearchEmployeeBK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.SP_SearchEmployeeBK_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="Deptid" ColumnName="Deptid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TypeAction" ColumnName="TypeAction" />
+          <ScalarProperty Name="DateAction" ColumnName="DateAction" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SearchTeamBK" FunctionName="Anviz_Data_BaseModel.Store.SP_SearchTeamBK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.SP_SearchTeamBK_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Dept" ColumnName="Id_Dept" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="Subdept" ColumnName="Subdept" />
+          <ScalarProperty Name="SubEmail" ColumnName="SubEmail" />
+          <ScalarProperty Name="SubName" ColumnName="SubName" />
+          <ScalarProperty Name="TypeAction" ColumnName="TypeAction" />
+          <ScalarProperty Name="DateAction" ColumnName="DateAction" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_TeamBK" FunctionName="Anviz_Data_BaseModel.Store.SP_TeamBK" />
+    <FunctionImportMapping FunctionImportName="SP_TeamEmployees" FunctionName="Anviz_Data_BaseModel.Store.SP_TeamEmployees">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Anviz_Data_BaseModel.SP_TeamEmployees_Result">
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="Deptid" ColumnName="Deptid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_UpdateEmployee" FunctionName="Anviz_Data_BaseModel.Store.SP_UpdateEmployee" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Anviz_Data_BaseModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

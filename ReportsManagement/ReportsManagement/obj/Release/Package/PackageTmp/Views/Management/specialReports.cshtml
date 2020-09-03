@@ -1,0 +1,91 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Reportes Especiales";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        List<Employee> employees = (List<Employee>)ViewData["specialReports"];
+        List<Employee> allEmployees = (List<Employee>)ViewData["allEmployees"];
+        
+        <div class="col-md-8 col-md-offset-2" style="clear:both">
+            <div class="collapse" id="addEmployee">
+                <div class="col-md-12" >
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="addSpecialReport" id="formAdd">
+                            <div class="form-group col-md-10">
+                                <label for="select" class="col-md-3 control-label">Nuevo Integrante: </label>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="idEmp">
+                                        @foreach (Employee emp in allEmployees)
+                                        {
+                                            if (emp.TeamId == 33)
+                                            {
+                                                continue;
+                                            }
+                                            <option value="@emp.Id">@Html.DisplayFor(modelItem => emp.Name) -- @Html.DisplayFor(modelItem => emp.Email)</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-success" onclick="confirmForm('formAdd');">Agregar</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row col-md-8 col-md-offset-2">
+            <div class="col-md-10">
+                <h2>Reportes Especiales: </h2>
+            </div>
+            <div class="col-md-2">
+                <button id="add" type="button" onclick="showHideForm();" class="btn btn-success" role="button" data-toggle="collapse" href="#addEmployee" aria-expanded="false" aria-controls="collapseExample" style="float:right; margin-top:20px">
+                    <span id="spanAdd" itemid="show" class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Agregar nuevo empleado"></span>
+                </button>
+            </div>
+        </div>
+        <article>
+            <div class="table-responsive col-md-8 col-md-offset-2" style="clear:both">
+                <table class="table table-hover display responsive nowrap" id="date-table" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var emp in employees)
+                        {
+                            <tr>
+                                <td>@emp.Name</td>
+                                <td>@emp.Email</td>
+                                <td>
+                                    @Html.ActionLink("Eliminar", "removeSpecialReport", new { idEmp = emp.Id }, new { @class = "btn btn-danger btn-xs", @id = emp.Id, @style = "display: none;" })
+                                    <button class="btn btn-danger btn-xs" onclick="validatePassword('Por favor ingrese su contraseña.', @emp.Id);">Eliminar</button>
+                                </td>
+                            </tr>
+        
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    }
+}
+
+@section scripts
+{
+
+}

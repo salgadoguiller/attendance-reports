@@ -1,0 +1,1121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Anviz_Data_BaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Anviz_Data_BaseModelStoreContainer">
+    <EntitySet Name="ActionInfo" EntityType="Anviz_Data_BaseModel.Store.ActionInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AddTimeSet" EntityType="Anviz_Data_BaseModel.Store.AddTimeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BasePara" EntityType="Anviz_Data_BaseModel.Store.BasePara" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Checkinout" EntityType="Anviz_Data_BaseModel.Store.Checkinout" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CheckLog" EntityType="Anviz_Data_BaseModel.Store.CheckLog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientSet" EntityType="Anviz_Data_BaseModel.Store.ClientSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ConfirmEmails" EntityType="Anviz_Data_BaseModel.Store.ConfirmEmails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DefineField" EntityType="Anviz_Data_BaseModel.Store.DefineField" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DepartmentsBackup" EntityType="Anviz_Data_BaseModel.Store.DepartmentsBackup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Dept" EntityType="Anviz_Data_BaseModel.Store.Dept" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmployeesBackup" EntityType="Anviz_Data_BaseModel.Store.EmployeesBackup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FingerClient" EntityType="Anviz_Data_BaseModel.Store.FingerClient" store:Type="Tables" store:Schema="dbo" store:Name="FingerClient">
+      <DefiningQuery>SELECT 
+      [FingerClient].[Clientid] AS [Clientid], 
+      [FingerClient].[Linkmode] AS [Linkmode], 
+      [FingerClient].[IPaddress] AS [IPaddress], 
+      [FingerClient].[ClientName] AS [ClientName], 
+      [FingerClient].[ClientNumber] AS [ClientNumber], 
+      [FingerClient].[Baudrate] AS [Baudrate], 
+      [FingerClient].[RecStatus] AS [RecStatus], 
+      [FingerClient].[Floorid] AS [Floorid], 
+      [FingerClient].[MachineType] AS [MachineType], 
+      [FingerClient].[DeviceType] AS [DeviceType], 
+      [FingerClient].[CommPWD] AS [CommPWD], 
+      [FingerClient].[CommPort] AS [CommPort]
+      FROM [dbo].[FingerClient] AS [FingerClient]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Holiday" EntityType="Anviz_Data_BaseModel.Store.Holiday" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LeaveClass" EntityType="Anviz_Data_BaseModel.Store.LeaveClass" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MemStat" EntityType="Anviz_Data_BaseModel.Store.MemStat" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OPinfo" EntityType="Anviz_Data_BaseModel.Store.OPinfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OPLog" EntityType="Anviz_Data_BaseModel.Store.OPLog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OutProg" EntityType="Anviz_Data_BaseModel.Store.OutProg" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Schedule" EntityType="Anviz_Data_BaseModel.Store.Schedule" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SchTime" EntityType="Anviz_Data_BaseModel.Store.SchTime" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SpecialReports" EntityType="Anviz_Data_BaseModel.Store.SpecialReports" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StatItems" EntityType="Anviz_Data_BaseModel.Store.StatItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Status" EntityType="Anviz_Data_BaseModel.Store.Status" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="Anviz_Data_BaseModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Checkinout" EntityType="Anviz_Data_BaseModel.Store.T_Checkinout" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_UpdateClient" EntityType="Anviz_Data_BaseModel.Store.T_UpdateClient" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TeamsBackup" EntityType="Anviz_Data_BaseModel.Store.TeamsBackup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TimeTable" EntityType="Anviz_Data_BaseModel.Store.TimeTable" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserCtrLog" EntityType="Anviz_Data_BaseModel.Store.UserCtrLog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Userinfo" EntityType="Anviz_Data_BaseModel.Store.Userinfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Userinfo_BK" EntityType="Anviz_Data_BaseModel.Store.Userinfo_BK" store:Type="Tables" store:Schema="dbo" store:Name="Userinfo_BK">
+      <DefiningQuery>SELECT 
+      [Userinfo_BK].[Userid] AS [Userid], 
+      [Userinfo_BK].[Name] AS [Name], 
+      [Userinfo_BK].[Sex] AS [Sex], 
+      [Userinfo_BK].[Pwd] AS [Pwd], 
+      [Userinfo_BK].[Deptid] AS [Deptid], 
+      [Userinfo_BK].[Nation] AS [Nation], 
+      [Userinfo_BK].[Brithday] AS [Brithday], 
+      [Userinfo_BK].[EmployDate] AS [EmployDate], 
+      [Userinfo_BK].[Telephone] AS [Telephone], 
+      [Userinfo_BK].[Duty] AS [Duty], 
+      [Userinfo_BK].[NativePlace] AS [NativePlace], 
+      [Userinfo_BK].[IDCard] AS [IDCard], 
+      [Userinfo_BK].[Address] AS [Address], 
+      [Userinfo_BK].[Mobile] AS [Mobile], 
+      [Userinfo_BK].[Educated] AS [Educated], 
+      [Userinfo_BK].[Polity] AS [Polity], 
+      [Userinfo_BK].[Specialty] AS [Specialty], 
+      [Userinfo_BK].[IsAtt] AS [IsAtt], 
+      [Userinfo_BK].[Isovertime] AS [Isovertime], 
+      [Userinfo_BK].[Isrest] AS [Isrest], 
+      [Userinfo_BK].[Remark] AS [Remark], 
+      [Userinfo_BK].[MgFlag] AS [MgFlag], 
+      [Userinfo_BK].[CardNum] AS [CardNum], 
+      [Userinfo_BK].[Picture] AS [Picture], 
+      [Userinfo_BK].[UserFlag] AS [UserFlag], 
+      [Userinfo_BK].[Groupid] AS [Groupid], 
+      [Userinfo_BK].[workdaylong] AS [workdaylong]
+      FROM [dbo].[Userinfo_BK] AS [Userinfo_BK]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserinfoBackup" EntityType="Anviz_Data_BaseModel.Store.UserinfoBackup" store:Type="Tables" store:Schema="dbo" store:Name="UserinfoBackup">
+      <DefiningQuery>SELECT 
+      [UserinfoBackup].[Userid] AS [Userid], 
+      [UserinfoBackup].[Name] AS [Name], 
+      [UserinfoBackup].[Sex] AS [Sex], 
+      [UserinfoBackup].[Pwd] AS [Pwd], 
+      [UserinfoBackup].[Deptid] AS [Deptid], 
+      [UserinfoBackup].[Nation] AS [Nation], 
+      [UserinfoBackup].[Brithday] AS [Brithday], 
+      [UserinfoBackup].[EmployDate] AS [EmployDate], 
+      [UserinfoBackup].[Telephone] AS [Telephone], 
+      [UserinfoBackup].[Duty] AS [Duty], 
+      [UserinfoBackup].[NativePlace] AS [NativePlace], 
+      [UserinfoBackup].[IDCard] AS [IDCard], 
+      [UserinfoBackup].[Address] AS [Address], 
+      [UserinfoBackup].[Mobile] AS [Mobile], 
+      [UserinfoBackup].[Educated] AS [Educated], 
+      [UserinfoBackup].[Polity] AS [Polity], 
+      [UserinfoBackup].[Specialty] AS [Specialty], 
+      [UserinfoBackup].[IsAtt] AS [IsAtt], 
+      [UserinfoBackup].[Isovertime] AS [Isovertime], 
+      [UserinfoBackup].[Isrest] AS [Isrest], 
+      [UserinfoBackup].[Remark] AS [Remark], 
+      [UserinfoBackup].[MgFlag] AS [MgFlag], 
+      [UserinfoBackup].[Cardnum] AS [Cardnum], 
+      [UserinfoBackup].[Machineid] AS [Machineid], 
+      [UserinfoBackup].[Picture] AS [Picture], 
+      [UserinfoBackup].[UserFlag] AS [UserFlag], 
+      [UserinfoBackup].[Groupid] AS [Groupid], 
+      [UserinfoBackup].[workdaylong] AS [workdaylong]
+      FROM [dbo].[UserinfoBackup] AS [UserinfoBackup]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserLeave" EntityType="Anviz_Data_BaseModel.Store.UserLeave" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserPower" EntityType="Anviz_Data_BaseModel.Store.UserPower" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserProfile" EntityType="Anviz_Data_BaseModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserShift" EntityType="Anviz_Data_BaseModel.Store.UserShift" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserTempShift" EntityType="Anviz_Data_BaseModel.Store.UserTempShift" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_Membership" EntityType="Anviz_Data_BaseModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="Anviz_Data_BaseModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_Roles" EntityType="Anviz_Data_BaseModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="Anviz_Data_BaseModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WeeklyReportsDetails" EntityType="Anviz_Data_BaseModel.Store.WeeklyReportsDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WeeklyReportsState" EntityType="Anviz_Data_BaseModel.Store.WeeklyReportsState" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="V_Class" EntityType="Anviz_Data_BaseModel.Store.V_Class" store:Type="Views" store:Schema="dbo" store:Name="V_Class">
+      <DefiningQuery>SELECT 
+      [V_Class].[Schid] AS [Schid], 
+      [V_Class].[Schname] AS [Schname], 
+      [V_Class].[Cycles] AS [Cycles], 
+      [V_Class].[Units] AS [Units], 
+      [V_Class].[AutoClass] AS [AutoClass], 
+      [V_Class].[BeginDay] AS [BeginDay], 
+      [V_Class].[Timeid] AS [Timeid], 
+      [V_Class].[Timename] AS [Timename], 
+      [V_Class].[Intime] AS [Intime], 
+      [V_Class].[Outtime] AS [Outtime], 
+      [V_Class].[BIntime] AS [BIntime], 
+      [V_Class].[EIntime] AS [EIntime], 
+      [V_Class].[BOuttime] AS [BOuttime], 
+      [V_Class].[EOuttime] AS [EOuttime], 
+      [V_Class].[Latetime] AS [Latetime], 
+      [V_Class].[Leavetime] AS [Leavetime], 
+      [V_Class].[WorkDays] AS [WorkDays], 
+      [V_Class].[Longtime] AS [Longtime], 
+      [V_Class].[MustIn] AS [MustIn], 
+      [V_Class].[MustOut] AS [MustOut], 
+      [V_Class].[IsFreetime] AS [IsFreetime], 
+      [V_Class].[IsOvertime] AS [IsOvertime]
+      FROM [dbo].[V_Class] AS [V_Class]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_UserClient" EntityType="Anviz_Data_BaseModel.Store.V_UserClient" store:Type="Views" store:Schema="dbo" store:Name="V_UserClient">
+      <DefiningQuery>SELECT 
+      [V_UserClient].[Logid] AS [Logid], 
+      [V_UserClient].[Userid] AS [Userid], 
+      [V_UserClient].[ClientNumber] AS [ClientNumber], 
+      [V_UserClient].[PowerFlag] AS [PowerFlag], 
+      [V_UserClient].[Name] AS [Name], 
+      [V_UserClient].[Pwd] AS [Pwd], 
+      [V_UserClient].[CardNum] AS [CardNum], 
+      [V_UserClient].[Deptid] AS [Deptid], 
+      [V_UserClient].[UserFlag] AS [UserFlag], 
+      [V_UserClient].[MgFlag] AS [MgFlag], 
+      [V_UserClient].[Groupid] AS [Groupid]
+      FROM [dbo].[V_UserClient] AS [V_UserClient]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ActionInfoDepartment" Association="Anviz_Data_BaseModel.Store.FK_ActionInfoDepartment">
+      <End Role="ActionInfo" EntitySet="ActionInfo" />
+      <End Role="DepartmentsBackup" EntitySet="DepartmentsBackup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionInfoEmployee" Association="Anviz_Data_BaseModel.Store.FK_ActionInfoEmployee">
+      <End Role="ActionInfo" EntitySet="ActionInfo" />
+      <End Role="EmployeesBackup" EntitySet="EmployeesBackup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionInfoTeam" Association="Anviz_Data_BaseModel.Store.FK_ActionInfoTeam">
+      <End Role="ActionInfo" EntitySet="ActionInfo" />
+      <End Role="TeamsBackup" EntitySet="TeamsBackup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportsStateReportsDetails" Association="Anviz_Data_BaseModel.Store.FK_ReportsStateReportsDetails">
+      <End Role="WeeklyReportsState" EntitySet="WeeklyReportsState" />
+      <End Role="WeeklyReportsDetails" EntitySet="WeeklyReportsDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResponsableAction" Association="Anviz_Data_BaseModel.Store.FK_ResponsableAction">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="ActionInfo" EntitySet="ActionInfo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RoleId" Association="Anviz_Data_BaseModel.Store.fk_RoleId">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserId" Association="Anviz_Data_BaseModel.Store.fk_UserId">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ActionInfo">
+    <Key>
+      <PropertyRef Name="IdAction" />
+    </Key>
+    <Property Name="IdAction" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ResponsableAction" Type="int" />
+    <Property Name="TypeAction" Type="int" />
+    <Property Name="DateAction" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AddTimeSet">
+    <Key>
+      <PropertyRef Name="Userid" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="TimeID" />
+    </Key>
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Date" Type="smalldatetime" Nullable="false" />
+    <Property Name="TimeID" Type="int" Nullable="false" />
+    <Property Name="AddTime" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BasePara">
+    <Key>
+      <PropertyRef Name="Company" />
+    </Key>
+    <Property Name="Company" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="TwoDay" Type="smallint" Nullable="false" />
+    <Property Name="NoClockIn" Type="bit" Nullable="false" />
+    <Property Name="NoClockOut" Type="bit" Nullable="false" />
+    <Property Name="LateTime" Type="smallint" Nullable="false" />
+    <Property Name="LeaveTime" Type="smallint" Nullable="false" />
+    <Property Name="ISOverTime" Type="bit" Nullable="false" />
+    <Property Name="OverTime" Type="smallint" Nullable="false" />
+    <Property Name="WorkDayLong" Type="smallint" Nullable="false" />
+    <Property Name="WOverTime" Type="numeric" Scale="1" />
+    <Property Name="HOverTime" Type="numeric" Scale="1" />
+    <Property Name="FOverTime" Type="numeric" Scale="1" />
+    <Property Name="IsAutoDownRec" Type="bit" />
+    <Property Name="DownRecTime" Type="varchar" MaxLength="50" />
+    <Property Name="OvertimeIn" Type="smallint" />
+    <Property Name="IsovertimeIn" Type="bit" />
+    <Property Name="DeductIn" Type="bit" />
+    <Property Name="DeductOut" Type="bit" />
+  </EntityType>
+  <EntityType Name="Checkinout">
+    <Key>
+      <PropertyRef Name="Logid" />
+    </Key>
+    <Property Name="Logid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="CheckTime" Type="datetime" Nullable="false" />
+    <Property Name="CheckType" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="Sensorid" Type="varchar" MaxLength="10" />
+    <Property Name="Checked" Type="bit" />
+    <Property Name="WorkType" Type="int" />
+    <Property Name="AttFlag" Type="int" />
+    <Property Name="OpenDoorFlag" Type="bit" />
+  </EntityType>
+  <EntityType Name="CheckLog">
+    <Key>
+      <PropertyRef Name="Logid" />
+    </Key>
+    <Property Name="Logid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Checktime" Type="datetime" Nullable="false" />
+    <Property Name="Checktype" Type="varchar" MaxLength="2" />
+    <Property Name="Sensorid" Type="varchar" MaxLength="10" />
+    <Property Name="OPFlag" Type="smallint" />
+    <Property Name="Whys" Type="varchar" MaxLength="250" />
+    <Property Name="OPname" Type="varchar" MaxLength="50" />
+    <Property Name="DTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientSet">
+    <Key>
+      <PropertyRef Name="Clientid" />
+    </Key>
+    <Property Name="Clientid" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="Pwd" Type="varchar" MaxLength="150" />
+    <Property Name="DTime" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ConfirmEmails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DefineField">
+    <Key>
+      <PropertyRef Name="Fieldid" />
+    </Key>
+    <Property Name="Fieldid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FieldName" Type="varchar" MaxLength="20" />
+    <Property Name="FieldValue" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DepartmentsBackup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Dept" Type="int" Nullable="false" />
+    <Property Name="Nombre_Dept" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Correo" Type="varchar" MaxLength="150" />
+    <Property Name="ActionInfo" Type="int" />
+  </EntityType>
+  <EntityType Name="Dept">
+    <Key>
+      <PropertyRef Name="Deptid" />
+    </Key>
+    <Property Name="Deptid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DeptName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SupDeptid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeesBackup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Sex" Type="varchar" MaxLength="10" />
+    <Property Name="Pwd" Type="varchar" MaxLength="50" />
+    <Property Name="Deptid" Type="int" Nullable="false" />
+    <Property Name="Nation" Type="varchar" MaxLength="50" />
+    <Property Name="Brithday" Type="smalldatetime" />
+    <Property Name="EmployDate" Type="smalldatetime" />
+    <Property Name="Telephone" Type="varchar" MaxLength="50" />
+    <Property Name="Duty" Type="varchar" MaxLength="50" />
+    <Property Name="NativePlace" Type="varchar" MaxLength="50" />
+    <Property Name="IDCard" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="150" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Educated" Type="varchar" MaxLength="50" />
+    <Property Name="Polity" Type="varchar" MaxLength="50" />
+    <Property Name="Specialty" Type="varchar" MaxLength="50" />
+    <Property Name="IsAtt" Type="bit" />
+    <Property Name="Isovertime" Type="bit" />
+    <Property Name="Isrest" Type="bit" />
+    <Property Name="Remark" Type="varchar" MaxLength="250" />
+    <Property Name="MgFlag" Type="smallint" />
+    <Property Name="CardNum" Type="varchar" MaxLength="10" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="UserFlag" Type="int" />
+    <Property Name="Groupid" Type="int" />
+    <Property Name="workdaylong" Type="int" />
+    <Property Name="ActionInfo" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Anviz_Data_Base.dbo.FingerClient' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="FingerClient">
+    <Key>
+      <PropertyRef Name="Clientid" />
+    </Key>
+    <Property Name="Clientid" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Linkmode" Type="smallint" />
+    <Property Name="IPaddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="ClientName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ClientNumber" Type="nvarchar" MaxLength="10" />
+    <Property Name="Baudrate" Type="int" />
+    <Property Name="RecStatus" Type="int" />
+    <Property Name="Floorid" Type="int" />
+    <Property Name="MachineType" Type="int" />
+    <Property Name="DeviceType" Type="int" />
+    <Property Name="CommPWD" Type="nvarchar" MaxLength="50" />
+    <Property Name="CommPort" Type="int" />
+  </EntityType>
+  <EntityType Name="Holiday">
+    <Key>
+      <PropertyRef Name="Holidayid" />
+    </Key>
+    <Property Name="Holidayid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="BDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="Days" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LeaveClass">
+    <Key>
+      <PropertyRef Name="Classid" />
+    </Key>
+    <Property Name="Classid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Classname" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ViewColor" Type="int" Nullable="false" />
+    <Property Name="Showas" Type="varchar" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="MemStat">
+    <Key>
+      <PropertyRef Name="Lsh" />
+    </Key>
+    <Property Name="Lsh" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Udept" Type="varchar" MaxLength="50" />
+    <Property Name="Uname" Type="varchar" MaxLength="50" />
+    <Property Name="Normal" Type="real" Nullable="false" />
+    <Property Name="Actual" Type="real" Nullable="false" />
+    <Property Name="Latetime" Type="real" Nullable="false" />
+    <Property Name="Earlytime" Type="real" Nullable="false" />
+    <Property Name="Absenttime" Type="real" Nullable="false" />
+    <Property Name="Overtime" Type="real" Nullable="false" />
+    <Property Name="Noin" Type="int" Nullable="false" />
+    <Property Name="Noout" Type="int" Nullable="false" />
+    <Property Name="Awaytime" Type="real" Nullable="false" />
+    <Property Name="BLeave" Type="real" Nullable="false" />
+    <Property Name="Leave" Type="real" Nullable="false" />
+    <Property Name="Freeovertime" Type="real" Nullable="false" />
+    <Property Name="Worktime" Type="real" Nullable="false" />
+    <Property Name="Attrate" Type="real" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OPinfo">
+    <Key>
+      <PropertyRef Name="Opid" />
+    </Key>
+    <Property Name="Opid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Pwd" Type="varchar" MaxLength="50" />
+    <Property Name="Authority" Type="varchar" MaxLength="32" />
+    <Property Name="Deptpower" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="OPLog">
+    <Key>
+      <PropertyRef Name="Logid" />
+    </Key>
+    <Property Name="Logid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="OPid" Type="int" Nullable="false" />
+    <Property Name="Optime" Type="datetime" Nullable="false" />
+    <Property Name="OPlog" Type="varchar" Nullable="false" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="OutProg">
+    <Key>
+      <PropertyRef Name="Progid" />
+    </Key>
+    <Property Name="Progid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProgName" Type="varchar" MaxLength="50" />
+    <Property Name="ProgPath" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="Schid" />
+    </Key>
+    <Property Name="Schid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Schname" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Cycles" Type="smallint" Nullable="false" />
+    <Property Name="Units" Type="smallint" Nullable="false" />
+    <Property Name="AutoClass" Type="bit" />
+  </EntityType>
+  <EntityType Name="SchTime">
+    <Key>
+      <PropertyRef Name="Schid" />
+      <PropertyRef Name="BeginDay" />
+      <PropertyRef Name="Timeid" />
+    </Key>
+    <Property Name="Schid" Type="int" Nullable="false" />
+    <Property Name="BeginDay" Type="smallint" Nullable="false" />
+    <Property Name="Timeid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpecialReports">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idEmployee" Type="int" />
+  </EntityType>
+  <EntityType Name="StatItems">
+    <Key>
+      <PropertyRef Name="Itemid" />
+    </Key>
+    <Property Name="Itemid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ItemName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Units" Type="smallint" Nullable="false" />
+    <Property Name="MinUnit" Type="numeric" Nullable="false" Scale="1" />
+    <Property Name="SRControl" Type="smallint" Nullable="false" />
+    <Property Name="IsAddup" Type="bit" Nullable="false" />
+    <Property Name="IsTimes" Type="bit" Nullable="false" />
+    <Property Name="Showas" Type="varchar" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Statusid" />
+    </Key>
+    <Property Name="Statusid" Type="int" Nullable="false" />
+    <Property Name="StatusChar" Type="varchar" Nullable="false" MaxLength="2" />
+    <Property Name="StatusText" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="T_Checkinout">
+    <Key>
+      <PropertyRef Name="Logid" />
+    </Key>
+    <Property Name="Logid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="CheckTime" Type="datetime" />
+    <Property Name="CheckType" Type="varchar" MaxLength="2" />
+    <Property Name="Sensorid" Type="varchar" MaxLength="10" />
+    <Property Name="Checked" Type="bit" Nullable="false" />
+    <Property Name="WorkType" Type="int" Nullable="false" />
+    <Property Name="AttFlag" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_UpdateClient">
+    <Key>
+      <PropertyRef Name="Clientid" />
+    </Key>
+    <Property Name="Clientid" Type="varchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="TeamsBackup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Dept" Type="int" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="Subdept" Type="varchar" MaxLength="50" />
+    <Property Name="SubEmail" Type="varchar" MaxLength="150" />
+    <Property Name="SubName" Type="varchar" MaxLength="50" />
+    <Property Name="ActionInfo" Type="int" />
+  </EntityType>
+  <EntityType Name="TimeTable">
+    <Key>
+      <PropertyRef Name="Timeid" />
+    </Key>
+    <Property Name="Timeid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Timename" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Intime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="Outtime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="BIntime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="EIntime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="BOuttime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="EOuttime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="Latetime" Type="smallint" Nullable="false" />
+    <Property Name="Leavetime" Type="smallint" Nullable="false" />
+    <Property Name="WorkDays" Type="numeric" Nullable="false" Scale="1" />
+    <Property Name="Longtime" Type="smallint" Nullable="false" />
+    <Property Name="MustIn" Type="bit" />
+    <Property Name="MustOut" Type="bit" />
+    <Property Name="IsFreeTime" Type="bit" />
+    <Property Name="IsOverTime" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserCtrLog">
+    <Key>
+      <PropertyRef Name="Logid" />
+    </Key>
+    <Property Name="Logid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Clientid" Type="varchar" MaxLength="10" />
+    <Property Name="Userid" Type="varchar" MaxLength="20" />
+    <Property Name="CheckTime" Type="datetime" />
+    <Property Name="ULog" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Userinfo">
+    <Key>
+      <PropertyRef Name="Userid" />
+    </Key>
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Sex" Type="varchar" MaxLength="10" />
+    <Property Name="Pwd" Type="varchar" MaxLength="50" />
+    <Property Name="Deptid" Type="int" Nullable="false" />
+    <Property Name="Nation" Type="varchar" MaxLength="50" />
+    <Property Name="Brithday" Type="smalldatetime" />
+    <Property Name="EmployDate" Type="smalldatetime" />
+    <Property Name="Telephone" Type="varchar" MaxLength="50" />
+    <Property Name="Duty" Type="varchar" MaxLength="50" />
+    <Property Name="NativePlace" Type="varchar" MaxLength="50" />
+    <Property Name="IDCard" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="150" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Educated" Type="varchar" MaxLength="50" />
+    <Property Name="Polity" Type="varchar" MaxLength="50" />
+    <Property Name="Specialty" Type="varchar" MaxLength="50" />
+    <Property Name="IsAtt" Type="bit" />
+    <Property Name="Isovertime" Type="bit" />
+    <Property Name="Isrest" Type="bit" />
+    <Property Name="Remark" Type="varchar" MaxLength="250" />
+    <Property Name="MgFlag" Type="smallint" />
+    <Property Name="CardNum" Type="varchar" MaxLength="10" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="UserFlag" Type="int" />
+    <Property Name="Groupid" Type="int" />
+    <Property Name="workdaylong" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Anviz_Data_Base.dbo.Userinfo_BK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Userinfo_BK">
+    <Key>
+      <PropertyRef Name="Userid" />
+      <PropertyRef Name="Deptid" />
+    </Key>
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Sex" Type="varchar" MaxLength="10" />
+    <Property Name="Pwd" Type="varchar" MaxLength="50" />
+    <Property Name="Deptid" Type="int" Nullable="false" />
+    <Property Name="Nation" Type="varchar" MaxLength="50" />
+    <Property Name="Brithday" Type="smalldatetime" />
+    <Property Name="EmployDate" Type="smalldatetime" />
+    <Property Name="Telephone" Type="varchar" MaxLength="50" />
+    <Property Name="Duty" Type="varchar" MaxLength="50" />
+    <Property Name="NativePlace" Type="varchar" MaxLength="50" />
+    <Property Name="IDCard" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="150" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Educated" Type="varchar" MaxLength="50" />
+    <Property Name="Polity" Type="varchar" MaxLength="50" />
+    <Property Name="Specialty" Type="varchar" MaxLength="50" />
+    <Property Name="IsAtt" Type="bit" />
+    <Property Name="Isovertime" Type="bit" />
+    <Property Name="Isrest" Type="bit" />
+    <Property Name="Remark" Type="varchar" MaxLength="250" />
+    <Property Name="MgFlag" Type="smallint" />
+    <Property Name="CardNum" Type="varchar" MaxLength="10" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="UserFlag" Type="int" />
+    <Property Name="Groupid" Type="int" />
+    <Property Name="workdaylong" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Anviz_Data_Base.dbo.UserinfoBackup' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="UserinfoBackup">
+    <Key>
+      <PropertyRef Name="IsAtt" />
+      <PropertyRef Name="Isovertime" />
+      <PropertyRef Name="Isrest" />
+    </Key>
+    <Property Name="Userid" Type="nvarchar" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sex" Type="nvarchar" MaxLength="10" />
+    <Property Name="Pwd" Type="nvarchar" MaxLength="50" />
+    <Property Name="Deptid" Type="int" />
+    <Property Name="Nation" Type="nvarchar" MaxLength="50" />
+    <Property Name="Brithday" Type="datetime" />
+    <Property Name="EmployDate" Type="datetime" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Duty" Type="nvarchar" MaxLength="50" />
+    <Property Name="NativePlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDCard" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="150" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Educated" Type="nvarchar" MaxLength="50" />
+    <Property Name="Polity" Type="nvarchar" MaxLength="50" />
+    <Property Name="Specialty" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsAtt" Type="bit" Nullable="false" />
+    <Property Name="Isovertime" Type="bit" Nullable="false" />
+    <Property Name="Isrest" Type="bit" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="250" />
+    <Property Name="MgFlag" Type="smallint" />
+    <Property Name="Cardnum" Type="nvarchar" MaxLength="20" />
+    <Property Name="Machineid" Type="nvarchar" MaxLength="255" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="UserFlag" Type="int" />
+    <Property Name="Groupid" Type="int" />
+    <Property Name="workdaylong" Type="int" />
+  </EntityType>
+  <EntityType Name="UserLeave">
+    <Key>
+      <PropertyRef Name="Lsh" />
+    </Key>
+    <Property Name="Lsh" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="BeginTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="LeaveClassid" Type="int" Nullable="false" />
+    <Property Name="Whys" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="UserPower">
+    <Key>
+      <PropertyRef Name="Logid" />
+    </Key>
+    <Property Name="Logid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="ClientNumber" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="PowerFlag" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="56" />
+  </EntityType>
+  <EntityType Name="UserShift">
+    <Key>
+      <PropertyRef Name="Userid" />
+      <PropertyRef Name="Schid" />
+      <PropertyRef Name="BeginDate" />
+      <PropertyRef Name="EndDate" />
+    </Key>
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Schid" Type="int" Nullable="false" />
+    <Property Name="BeginDate" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="EndDate" Type="varchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="UserTempShift">
+    <Key>
+      <PropertyRef Name="Userid" />
+      <PropertyRef Name="Timeid" />
+      <PropertyRef Name="WorkDate" />
+    </Key>
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Timeid" Type="int" Nullable="false" />
+    <Property Name="WorkDate" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="IsOvertime" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsConfirmed" Type="bit" />
+    <Property Name="LastPasswordFailureDate" Type="datetime" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PasswordChangedDate" Type="datetime" />
+    <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WeeklyReportsDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TypeReport" Type="int" Nullable="false" />
+    <Property Name="IdReceptor" Type="int" Nullable="false" />
+    <Property Name="StateReport" Type="int" Nullable="false" />
+    <Property Name="TypeError" Type="int" Nullable="false" />
+    <Property Name="IdWeeklyReportState" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WeeklyReportsState">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StateReport" Type="int" Nullable="false" />
+    <Property Name="PercentReports" Type="decimal" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="TypeError" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Anviz_Data_Base.dbo.V_Class' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="V_Class">
+    <Key>
+      <PropertyRef Name="Schid" />
+      <PropertyRef Name="Schname" />
+      <PropertyRef Name="Cycles" />
+      <PropertyRef Name="Units" />
+      <PropertyRef Name="BeginDay" />
+      <PropertyRef Name="Timeid" />
+      <PropertyRef Name="Timename" />
+      <PropertyRef Name="Intime" />
+      <PropertyRef Name="Outtime" />
+      <PropertyRef Name="BIntime" />
+      <PropertyRef Name="EIntime" />
+      <PropertyRef Name="BOuttime" />
+      <PropertyRef Name="EOuttime" />
+      <PropertyRef Name="Latetime" />
+      <PropertyRef Name="Leavetime" />
+      <PropertyRef Name="WorkDays" />
+      <PropertyRef Name="Longtime" />
+    </Key>
+    <Property Name="Schid" Type="int" Nullable="false" />
+    <Property Name="Schname" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Cycles" Type="smallint" Nullable="false" />
+    <Property Name="Units" Type="smallint" Nullable="false" />
+    <Property Name="AutoClass" Type="bit" />
+    <Property Name="BeginDay" Type="smallint" Nullable="false" />
+    <Property Name="Timeid" Type="int" Nullable="false" />
+    <Property Name="Timename" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Intime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="Outtime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="BIntime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="EIntime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="BOuttime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="EOuttime" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="Latetime" Type="smallint" Nullable="false" />
+    <Property Name="Leavetime" Type="smallint" Nullable="false" />
+    <Property Name="WorkDays" Type="numeric" Nullable="false" Scale="1" />
+    <Property Name="Longtime" Type="smallint" Nullable="false" />
+    <Property Name="MustIn" Type="bit" />
+    <Property Name="MustOut" Type="bit" />
+    <Property Name="IsFreetime" Type="bit" />
+    <Property Name="IsOvertime" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Anviz_Data_Base.dbo.V_UserClient' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="V_UserClient">
+    <Key>
+      <PropertyRef Name="Logid" />
+      <PropertyRef Name="Userid" />
+      <PropertyRef Name="ClientNumber" />
+      <PropertyRef Name="PowerFlag" />
+      <PropertyRef Name="Deptid" />
+    </Key>
+    <Property Name="Logid" Type="int" Nullable="false" />
+    <Property Name="Userid" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="ClientNumber" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="PowerFlag" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Pwd" Type="varchar" MaxLength="50" />
+    <Property Name="CardNum" Type="varchar" MaxLength="10" />
+    <Property Name="Deptid" Type="int" Nullable="false" />
+    <Property Name="UserFlag" Type="int" />
+    <Property Name="MgFlag" Type="smallint" />
+    <Property Name="Groupid" Type="int" />
+  </EntityType>
+  <Association Name="FK_ActionInfoDepartment">
+    <End Role="ActionInfo" Type="Anviz_Data_BaseModel.Store.ActionInfo" Multiplicity="0..1" />
+    <End Role="DepartmentsBackup" Type="Anviz_Data_BaseModel.Store.DepartmentsBackup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActionInfo">
+        <PropertyRef Name="IdAction" />
+      </Principal>
+      <Dependent Role="DepartmentsBackup">
+        <PropertyRef Name="ActionInfo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionInfoEmployee">
+    <End Role="ActionInfo" Type="Anviz_Data_BaseModel.Store.ActionInfo" Multiplicity="0..1" />
+    <End Role="EmployeesBackup" Type="Anviz_Data_BaseModel.Store.EmployeesBackup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActionInfo">
+        <PropertyRef Name="IdAction" />
+      </Principal>
+      <Dependent Role="EmployeesBackup">
+        <PropertyRef Name="ActionInfo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionInfoTeam">
+    <End Role="ActionInfo" Type="Anviz_Data_BaseModel.Store.ActionInfo" Multiplicity="0..1" />
+    <End Role="TeamsBackup" Type="Anviz_Data_BaseModel.Store.TeamsBackup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActionInfo">
+        <PropertyRef Name="IdAction" />
+      </Principal>
+      <Dependent Role="TeamsBackup">
+        <PropertyRef Name="ActionInfo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportsStateReportsDetails">
+    <End Role="WeeklyReportsState" Type="Anviz_Data_BaseModel.Store.WeeklyReportsState" Multiplicity="1" />
+    <End Role="WeeklyReportsDetails" Type="Anviz_Data_BaseModel.Store.WeeklyReportsDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WeeklyReportsState">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WeeklyReportsDetails">
+        <PropertyRef Name="IdWeeklyReportState" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResponsableAction">
+    <End Role="UserProfile" Type="Anviz_Data_BaseModel.Store.UserProfile" Multiplicity="0..1" />
+    <End Role="ActionInfo" Type="Anviz_Data_BaseModel.Store.ActionInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ActionInfo">
+        <PropertyRef Name="ResponsableAction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RoleId">
+    <End Role="webpages_Roles" Type="Anviz_Data_BaseModel.Store.webpages_Roles" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="Anviz_Data_BaseModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webpages_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserId">
+    <End Role="UserProfile" Type="Anviz_Data_BaseModel.Store.UserProfile" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="Anviz_Data_BaseModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="coming_in" ReturnType="datetime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetEmployes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="begindate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="I_and_OUT" ReturnType="date" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sensor_in" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sensor_out" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="SP_AllDepartments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_AllDepartmetsBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_AllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_AllEmployeesBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_AllTeamsBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_AllWeeklyReportsState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_ConfirmEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_DeleteConfirmEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_DeleteDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Deptid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_DeleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Userid" Type="int" Mode="In" />
+    <Parameter Name="ResponsableAction" Type="int" Mode="In" />
+    <Parameter Name="DateAction" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SP_DeleteSpecialReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmployee" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_DepartmentBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ResponsableAction" Type="int" Mode="In" />
+    <Parameter Name="TypeAction" Type="int" Mode="In" />
+    <Parameter Name="DateAction" Type="datetime" Mode="In" />
+    <Parameter Name="Id_Dept" Type="int" Mode="In" />
+    <Parameter Name="Nombre_Dept" Type="varchar" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Correo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Employee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_EmployeeBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ResponsableAction" Type="int" Mode="In" />
+    <Parameter Name="TypeAction" Type="int" Mode="In" />
+    <Parameter Name="DateAction" Type="datetime" Mode="In" />
+    <Parameter Name="Userid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_EndEstateDepartmentBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DeptId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_EndEstateEmployeeBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_EndEstateTeamBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TeamId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_ExistDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Deptid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_InsertConfirmEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_InsertDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DeptName" Type="varchar" Mode="In" />
+    <Parameter Name="SupDeptid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_InsertReportDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TypeReport" Type="int" Mode="In" />
+    <Parameter Name="IdReceptor" Type="int" Mode="In" />
+    <Parameter Name="StateReport" Type="int" Mode="In" />
+    <Parameter Name="TypeError" Type="int" Mode="In" />
+    <Parameter Name="IdWeeklyReportState" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_InsertReportState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StateReport" Type="int" Mode="In" />
+    <Parameter Name="PercentReports" Type="decimal" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="TypeError" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_InsertSpecialReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmployee" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_matrix_weekdays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idDepto" Type="int" Mode="In" />
+    <Parameter Name="begindate" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_RollBackEmployeeDeleted" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ResponsableAction" Type="int" Mode="In" />
+    <Parameter Name="DateAction" Type="datetime" Mode="In" />
+    <Parameter Name="IdEmpBK" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SearchDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Deptid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SearchDepartmentBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SearchEmployeeBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SearchSubDepartments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Deptid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SearchTeamBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SpecialReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_TeamBK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ResponsableAction" Type="int" Mode="In" />
+    <Parameter Name="TypeAction" Type="int" Mode="In" />
+    <Parameter Name="DateAction" Type="datetime" Mode="In" />
+    <Parameter Name="Id_Dept" Type="int" Mode="In" />
+    <Parameter Name="DeptID" Type="int" Mode="In" />
+    <Parameter Name="Subdept" Type="varchar" Mode="In" />
+    <Parameter Name="SubEmail" Type="varchar" Mode="In" />
+    <Parameter Name="SubName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_TeamEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Deptid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_UpdateDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Deptid" Type="int" Mode="In" />
+    <Parameter Name="DeptName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_UpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Userid" Type="int" Mode="In" />
+    <Parameter Name="Deptid" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Address" Type="varchar" Mode="In" />
+    <Parameter Name="ResponsableAction" Type="int" Mode="In" />
+    <Parameter Name="DateAction" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SP_UpdateReportDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TypeReport" Type="int" Mode="In" />
+    <Parameter Name="StateReport" Type="int" Mode="In" />
+    <Parameter Name="TypeError" Type="int" Mode="In" />
+    <Parameter Name="IdWeeklyReportState" Type="int" Mode="In" />
+    <Parameter Name="IdReceptor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_UpdateStateReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="StateReport" Type="int" Mode="In" />
+    <Parameter Name="PercentReports" Type="decimal" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="TypeError" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_WeeklyReportState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdWeeklyReportState" Type="int" Mode="In" />
+  </Function>
+  <Function Name="turn_off" ReturnType="datetime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="worked_hours" ReturnType="decimal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+</Schema>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AnvizModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AnvizEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="userInfo" EntityType="AnvizModel.userInfo" />
+    <FunctionImport Name="allEmployees" ReturnType="Collection(AnvizModel.allEmployees_Result)" />
+    <FunctionImport Name="teamEmployees" ReturnType="Collection(AnvizModel.teamEmployees_Result)">
+      <Parameter Name="teamID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="userInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="deptID" Type="Int32" Nullable="false" />
+    <Property Name="teamID" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="allEmployees_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="deptID" Nullable="false" />
+    <Property Type="Int32" Name="teamID" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="60" />
+  </ComplexType>
+  <ComplexType Name="teamEmployees_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="deptID" Nullable="false" />
+    <Property Type="Int32" Name="teamID" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="60" />
+  </ComplexType>
+</Schema>

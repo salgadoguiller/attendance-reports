@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - LNOHN</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link href="../Content/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../Content/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="../Content/css/style.css" rel="stylesheet">
+
+        <link rel="icon" type="image/png" href="../Content/imgs/favicon.png" />
+
+        @{
+            int message = (int)ViewData["message"];
+            string messageValue = (string)ViewData["messageValue"];
+        }
+    </head>
+    <body>
+        <div id="bodyPublic">
+            <!-- Error -->
+            @if (message == 3)
+            {
+                <div class="alert alert-danger alert-dismissible col-md-8 col-md-offset-2" role="alert" style="margin-top:50px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span><strong>¡Error!</strong> @messageValue
+                </div>
+            }            
+            <!-- Mostrara todo el contenido html que se encuentre en las vistas que utilicen este layout y que este fuera de una seccion -->
+            @RenderBody()
+        </div>
+        <!--/#body-->
+
+        <hr />
+        <footer id="footer" style="clear:both;">
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <center>
+                        <p>&copy; @DateTime.Now.Year - LNO Honduras</p>
+                    </center>
+                </div>
+            </div>
+        </footer>
+
+        <script src="../Content/js/jquery-2.min.js"></script>
+        <script src="../Content/js/bootstrap.min.js"></script>
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

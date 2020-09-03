@@ -1,0 +1,103 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if (!error)
+    {
+        List<User> users = (List<User>)ViewData["users"];
+        int count = users.Count();
+        <div class="row col-md-12">
+            <div class="navLog col-md-2" style="margin-top:25px">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active2" id="itemsli"><a href="#" onclick="showItems();">Ver</a></li>
+                    <li role="presentation" id="createli"><a href="#" onclick="showCreate();">Crear</a></li>
+                </ul>
+            </div>
+            <div class="col-md-8 col-md-offset-1">
+                <div class="col-md-12" id="create" style="display:none;">
+                    <br /><br />
+                    <form class="form-horizontal" method="POST" action="../Account/newUser" id="formAdd">
+                        <div class="form-group">
+                            <label for="inputText" class="col-sm-2 control-label">Nombre Usuario: </label>
+                            <div class="col-sm-10" id="popName" data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Debe ingresar un nombre.">
+                                <input type="text" class="form-control" placeholder="Nombre" value="" name="name" id="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="popPassNC" data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Contraseñas no coinciden">
+                            </div>
+                            <label for="inputText" class="col-sm-2 control-label">Contraseña: </label>
+                            <div class="col-sm-10" id="popPass" data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Debe ingresar una contraseña.">
+                                <input type="password" class="form-control" placeholder="Contraseña" value="" name="pass" id="pass">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputText" class="col-sm-2 control-label">Confirmar Contraseña: </label>
+                            <div class="col-sm-10" id="popPass2" data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Debe confirmar la contraseña.">
+                                <input type="password" class="form-control" placeholder="Confirmar Contraseña" value="" name="pass2" id="pass2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-2">
+                                <button type="button" class="btn btn-success" onclick="validateFormAddUser('name', 'popName', 'pass', 'popPass', 'pass2', 'popPass2', 'popPassNC', 'formAdd');">Agregar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="items">
+                    <div class="row col-md-12">
+                        <div class="col-md-10">
+                            <h2>Usuarios: </h2>
+                        </div>
+                    </div>
+                    <article>
+                        <div class="table-responsive col-md-12" style="clear:both">
+                            <table class="table table-hover display responsive nowrap" id="date-table" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var user in users)
+                                    {
+                                        <tr>
+                                            <td>@user.UserName</td>
+                                            @if (count >= 2)
+                                            {
+                                                <td>
+                                                    @Html.ActionLink("Eliminar Usuario", "../Account/deleteUser", new { userId = user.UserId}, new { @class = "btn btn-danger btn-xs", @id = user.UserId, @style = "display: none;" })
+                                                    <button class="btn btn-danger btn-xs" onclick="validatePassword('Por favor ingrese su contraseña.', @user.UserId);">Eliminar Usuario</button>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    @Html.ActionLink("Eliminar Usuario", "../Account/deleteUser", new { userId = user.UserId}, new { @class = "btn btn-danger btn-xs", @id = user.UserId, @style = "display: none;" })
+                                                    <button class="btn btn-danger btn-xs" onclick="swal('¡Error!', 'No se puede eliminar este usuario.', 'warning')">Eliminar Usuario</button>
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section scripts
+{
+
+}

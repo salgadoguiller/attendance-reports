@@ -1,0 +1,219 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Reporte Confugurable";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if (!error)
+    {
+        <!-- Mostrara toda la informacion de los departamentos junto con las opciones disponibles -->
+        List<Department> departments = (List<Department>)ViewData["departments"];
+        List<DepartmentMongo> departmentsMongo = (List<DepartmentMongo>)ViewData["departmentsMongo"];
+        List<GetReportMongo> teamsMongo = (List<GetReportMongo>)ViewData["teamsMongo"];
+        List<Employee> employees = (List<Employee>)ViewData["employees"];
+        <div class="row col-md-12">
+            <div class="navLog col-md-2" style="margin-top:25px">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active2" id="employeesli"><a href="#" onclick="showEmployees();">Empleados</a></li>
+                    <li role="presentation" id="teamsli"><a href="#" onclick="showTeams();">Equipos</a></li>
+                    <li role="presentation" id="departmentsli"><a href="#" onclick="showDepartments();">Departamentos</a></li>
+                    <li id="specialReportsli" style="display:none"><a href="#"></a></li>
+                </ul>
+            </div>
+            <!-- Empleados -->
+            <div class="" id="employees">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Generar reporte de empleados: </h2>
+                </div>
+                <div class="row col-md-8 col-md-offset-1">
+                    <form method="post" onsubmit="return validateFormReports('Emp');">
+                        <input type='hidden' class="form-control" name="type" value="employees">
+                        <div class="form-group col-md-12">
+                            <label for="employees" id="selectEmp" data-toggle="popover" data-trigger="manual" data-placement="right" data-content="Debe seleccionar al menos un empleado.">Empleados: </label> <br/>
+                            <select class="form-control" size="20" multiple="multiple" name="listItem" id="listItemEmp">
+                                @foreach (Employee emp in @employees)
+                                {
+                                    if (emp.TeamId == 33 )
+                                    {
+                                        continue;
+                                    }
+                                    <option value="@emp.Id">@emp.Name -- @emp.Email </option>
+                                }
+                            </select><br />
+                            <input type="checkbox" name="selectAll" value="all" id="selectAllEmp">TODOS LOS EMPLEADOS<br />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="startDate">Fecha inicio: </label>
+                            <div class='input-group date' id='startDateE'>
+                                <input type='text' class="form-control" name="startDate" id="startDateEmp" required data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="Fecha mayor a la fecha actual o a la fecha de fin." onclick="hidePopover('startDateEmp');">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="endDate">Fecha fin: </label>
+                            <div class='input-group date' id='endDateE'>
+                                <input type='text' class="form-control" name="endDate" id="endDateEmp" required onclick="hidePopover('startDateEmp');">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="newEmailE" id="lblNewEmailEmp" style="display:none">Correo Electrónico</label>
+                            <input type="hidden" class="form-control" id="newEmailEmp" placeholder="Correo Electrónico" name="newEmail" disabled="" required>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="method" id="optionsEmp" data-toggle="popover" data-trigger="manual" data-placement="right" data-content="Debe seleccionar al menos una de las opciones disponibles.">Opciones: </label> <br />
+                            <input type="checkbox" name="method" value="email" id="chkEmailEmp" onclick="hidePopover('optionsEmp');"> Enviar por correo electrónico a cada empleado <br />
+                            <input type="checkbox" name="method" value="newEmail" id="chxNewEmailEmp" onclick="showInput('newEmailEmp', 'lblNewEmailEmp', 'chxNewEmailEmp'); hidePopover('optionsEmp');"> Definir correo electrónico para enviar los reportes <br />
+                            <input type="checkbox" name="method" value="download" id="chkDownloadEmp" onclick="hidePopover('optionsEmp');"> Descargar <br>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-success">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+            <!-- Equipos -->
+            <div class="" id="teams" style="display:none">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Generar reporte de equipos: </h2>
+                </div>
+                <div class="row col-md-8 col-md-offset-1">
+                    <form method="post" onsubmit="return validateFormReports('Team');">
+                        <input type='hidden' class="form-control" name="type" value="teams">
+                        <div class="form-group col-md-12">
+                            <label for="teams" id="selectTeam" data-toggle="popover" data-trigger="manual" data-placement="right" data-content="Debe seleccionar al menos un equipo.">Equipos: </label> <br/>
+                            <select class="form-control" size="20" multiple="multiple" name="listItem" id="listItemTeam">
+                                @foreach (Department team in departments)
+                                {
+                                    if (team.SupDeptid != 1)
+                                    {
+                                        foreach (GetReportMongo teamMongo in teamsMongo)
+                                        {
+                                            if (team.Deptid == Convert.ToInt32(teamMongo.deptID))
+                                            {
+                                                <option value="@team.Deptid">@team.DeptName -- @teamMongo.subEmail</option>
+                                                break;                                 
+                                            }
+                                        }                                       
+                                    }
+                                }
+                            </select><br />
+                            <input type="checkbox" name="selectAll" value="all" id="selectAllTeam">TODOS LOS EQUIPOS<br />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="startDateT">Fecha inicio: </label>
+                            <div class='input-group date' id='startDateT'>
+                                <input type='text' class="form-control" name="startDate" id="startDateTeam" required data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="Fecha mayor a la fecha actual o a la fecha de fin." onclick="hidePopover('startDateTeam');">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="endDateT">Fecha fin: </label>
+                            <div class='input-group date' id='endDateT'>
+                                <input type='text' class="form-control" name="endDate" id="endDateTeam" required onclick="hidePopover('startDateTeam');">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="newEmailT" id="lblNewEmailTeam" style="display:none">Correo Electrónico</label>
+                            <input type="hidden" class="form-control" id="inputNewEmailTeam" placeholder="Correo Electrónico" name="newEmail" disabled="" required>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="method" id="optionsTeam" data-toggle="popover" data-trigger="manual" data-placement="right" data-content="Debe seleccionar al menos una de las opciones disponibles.">Opciones: </label> <br />
+                            <input type="checkbox" name="method" value="email" id="chkEmailTeam" onclick="hidePopover('optionsTeam');"> Enviar por correo electrónico al responsable del equipo <br />
+                            <input type="checkbox" name="method" value="newEmail" id="chxNewEmailTeam" onclick="showInput('inputNewEmailTeam', 'lblNewEmailTeam', 'chxNewEmailTeam'); hidePopover('optionsTeam');"> Definir correo electrónico para enviar los reportes <br />
+                            <input type="checkbox" name="method" value="download" id="chkDownloadTeam" onclick="hidePopover('optionsTeam');"> Descargar <br>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-success">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+            <!-- Departamentos -->
+            <div class="" id="departments" style="display:none">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Generar reporte de departamentos: </h2>
+                </div>
+                <div class="row col-md-8 col-md-offset-1">
+                    <form method="post" onsubmit="return validateFormReports('Dept');">
+                        <input type='hidden' class="form-control" name="type" value="departments">
+                        <div class="form-group col-md-12">
+                            <label for="departments" id="selectDept" data-toggle="popover" data-trigger="manual" data-placement="right" data-content="Debe seleccionar al menos un departamento.">Departamentos: </label> <br/>
+                            <select class="form-control" size="17" multiple="multiple" name="listItem" id="listItemDept">
+                                @foreach (Department dept in departments)
+                                {
+                                    if (dept.SupDeptid == 1)
+                                    {
+                                        foreach (DepartmentMongo deptMongo in departmentsMongo)
+                                        {
+                                            if (dept.Deptid == Convert.ToInt32(deptMongo.Id_Dept))
+                                            {
+                                                <option value="@dept.Deptid">@dept.DeptName -- @deptMongo.correo[0]</option>
+                                                break;                                 
+                                            }
+                                        }                                       
+                                    }
+                                }
+                            </select><br />
+                            <input type="checkbox" name="selectAll" value="all" id="selectAllDept">TODOS LOS DEPARTAMENTOS<br />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="startDateD">Fecha inicio: </label>
+                            <div class='input-group date' id='startDateD'>
+                                <input type='text' class="form-control" name="startDate" id="startDateDept" required data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="Fecha mayor a la fecha actual o a la fecha de fin." onclick="hidePopover('startDateDept');">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="endDateD">Fecha fin: </label>
+                            <div class='input-group date' id='endDateD'>
+                                <input type='text' class="form-control" name="endDate" id="endDateDept" required onclick="hidePopover('startDateDept');">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="newEmailD" id="lblNewEmailDept" style="display:none">Correo Electrónico</label>
+                            <input type="hidden" class="form-control" id="inputNewEmailDept" placeholder="Correo Electrónico" name="newEmail" disabled="" required>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="method" id="optionsDept" data-toggle="popover" data-trigger="manual" data-placement="right" data-content="Debe seleccionar al menos una de las opciones disponibles.">Opciones: </label> <br />
+                            <input type="checkbox" name="method" value="email" id="chkEmailDept" onclick="hidePopover('optionsDept');"> Enviar por correo electrónico al responsable del departamento <br />
+                            <input type="checkbox" name="method" value="newEmail" id="chxNewEmailDept" onclick="showInput('inputNewEmailDept', 'lblNewEmailDept', 'chxNewEmailDept'); hidePopover('optionsDept');"> Definir correo electrónico para enviar los reportes <br />
+                            <input type="checkbox" name="method" value="download" id="chkDownloadDept" onclick="hidePopover('optionsDept');"> Descargar <br>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-success">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="" id="specialReports">
+
+            </div>
+        </div>       
+    }
+}
+
+@section scripts
+{
+
+}

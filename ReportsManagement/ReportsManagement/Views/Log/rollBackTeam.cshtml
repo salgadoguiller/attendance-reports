@@ -1,0 +1,102 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Revertir Cambio";
+    Layout = "~/Views/Shared/_Layout2Admin.cshtml";
+    bool error = (bool)ViewData["error"];
+    string stateDepartment = (string)ViewData["stateDepartment"];
+    GetReportMongo teamMongo = new GetReportMongo();
+    Department team = new Department();
+    TeamBK teamBK = new TeamBK();
+}
+
+@if(!error)
+{
+    if(stateDepartment != "Deleted")
+    {
+        team = (Department)ViewData["team"];
+        teamMongo = (GetReportMongo)ViewData["teamMongo"];
+    }
+    teamBK = (TeamBK)ViewData["teamBK"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        <!-- Mostrara toda la informacion de un departamento especifico junto con las opciones disponibles -->
+        <article>
+            <div class="row col-md-8 col-md-offset-2" style="margin-bottom:25px;">
+                <h2>Revertir cambios: </h2>
+            </div>
+            <div class="table-responsive col-md-8 col-md-offset-2" style="clear:both">
+                <table class="table table-hover display responsive nowrap" id="date-table-simple" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Estado bitácora</th>
+                        <th>Estado actual</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Equipo</td>
+                            <td>@teamBK.subdept</td>
+                            @if(stateDepartment != "Deleted")
+                            {
+                                <td>@team.DeptName</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Responsable</td>
+                            <td>@teamBK.subName</td>
+                            @if(stateDepartment != "Deleted")
+                            {
+                                <td>@teamMongo.subName</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Correo</td>
+                            <td>@teamBK.subEmail</td>
+                            @if (stateDepartment != "Deleted")
+                            {
+                                <td>@teamMongo.subEmail</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-8 col-md-offset-2" style="clear:both;">
+                @if (stateDepartment != "Deleted")
+                {
+                    @Html.ActionLink("Revertir", "rollBackTeamExecute", new { idTeam = team.Deptid , idTeamBK = teamBK.IdBK, }, new { @class = "btn btn-success btn-xs", @id = team.Deptid , @style = "display: none;" })
+                    <button class="btn btn-success" onclick="validatePassword('Por favor ingrese su contraseña.', @team.Deptid);">Revertir</button>
+                }
+                else
+                {
+                    <br />
+                    <p style="color:orange;"><strong><i>No se puede revertir debido a que el equipo fue eliminado.</i></strong></p>
+                }
+            </div>
+        </article>
+    }
+}
+
+
+@section scripts
+{
+
+}
+

@@ -1,0 +1,141 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Departamentos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        List<Department> departments = (List<Department>)ViewData["departments"];
+        List<DepartmentMongo> departmentsMongo = (List<DepartmentMongo>)ViewData["departmentsMongo"];
+        List<Employee> allEmployees = (List<Employee>)ViewData["allEmployees"];
+        
+        <div class="row col-md-12">
+            <div class="navLog col-md-2" style="margin-top:25px">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active2" id="itemsli"><a href="#" onclick="showItems();">Ver</a></li>
+                    <li role="presentation" id="createli"><a href="#" onclick="showCreate();">Crear</a></li>
+                </ul>
+            </div>
+            <div class="col-md-8 col-md-offset-1">
+                <div class="col-md-12" id="create" style="display:none;">
+                    <br /><br />
+                    <form class="form-horizontal" method="POST" action="addDepartment" id="formAdd">
+                        <div class="form-group">
+                            <label for="inputText" class="col-sm-2 control-label">Nombre Departamento: </label>
+                            <div class="col-sm-10" id="popName" data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Debe ingresar un nombre.">
+                                <input type="text" class="form-control" placeholder="Nombre" value="" name="name" id="name" required>
+                            </div>
+                        </div>
+                        <div class="form-group" id="groupResponsable">
+                            <label for="select" class="col-sm-2 control-label">Responsable: </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="idResponsable" id="responsable">
+                                    @foreach (Employee emp in allEmployees)
+                                    {
+                                        if (emp.TeamId == 33)
+                                        {
+                                            continue;
+                                        }
+                                        <option value="@emp.Id">@emp.Name -- @emp.Email</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="select" class="col-sm-2 control-label">Opciones: </label>
+                            <div class="col-sm-10">
+                                <div id="groupReasign">
+                                    <input type="checkbox" name="reasign" value="reasign" id="reasign"> Reasignar Empleado<br />
+                                </div>
+                                <input type="checkbox" name="empty" value="empty" id="empty" onclick="emptyResponsable('groupResponsable', 'groupReasign', 'reasign', this.id);"> Ningún Responsable <br />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-2">
+                                <button type="button" class="btn btn-success" onclick="validateFormAdd('name','formAdd','popName');">Agregar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="items">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Departamentos: </h2>
+                        </div>
+                    </div>
+                    <article>
+                      <div class="table-responsive col-md-12" style="clear:both">
+                        <table class="table table-hover display responsive nowrap" id="date-table" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                              <th>Departamento</th>
+                              <th>Responsable</th>
+                              <th>Correo</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              @foreach (var dept in departments)
+                              {
+                                  if (dept.SupDeptid == 1)
+                                  {
+                                      <tr>
+                                        <td>@Html.DisplayFor(modelItem => dept.DeptName)</td>
+                                        @{bool find = false;}
+                                        @foreach(DepartmentMongo deptMongo in departmentsMongo)
+                                        {
+                                            if(dept.Deptid == Convert.ToInt32(deptMongo.Id_Dept))
+                                            {
+                                                find = true;
+                                                <td>@Html.DisplayFor(modelItem => deptMongo.Name[0])</td>
+                                                <td>@Html.DisplayFor(modelItem => deptMongo.correo[0])</td>                                    
+                                            }
+                                
+                                        }
+                                        @if(!find)
+                                        {
+                                            <td></td>
+                                            <td></td>
+                                        }
+                                        <td>
+                                            @{string idPop = "popDepartment" + dept.Deptid;
+                                              int idAnchor = dept.Deptid;}
+                                            <button class="btn btn-primary btn-xs" onclick="subDepartmentsVerify('@idPop', '@dept.Deptid', '@idAnchor');" id="@idPop" data-toggle="popover" data-trigger="manual" data-placement="left" 
+                                            data-html="true" data-content="Este departamento no tiene ningun equipo.<br><br><button class='btn btn-primary btn-xs' onClick='clickBtn(@idAnchor);'>Agregar</button>"> Ver Equipos </button>
+                                            @Html.ActionLink("Ver Equipos", "department", new { idDept = dept.Deptid }, new { @class = "", @id = idAnchor, @style = "display: none;" })
+
+                                            @{idPop = "popEmployees" + dept.Deptid;
+                                              idAnchor = 1000000 + dept.Deptid;}
+                                            <button class="btn btn-primary btn-xs" onclick="haveEmployeesVerify('@idPop', '@dept.Deptid', '@idAnchor');" id="@idPop" data-toggle="popover" data-trigger="manual" data-placement="left" 
+                                            data-html="true" data-content="Este departamento no tiene ningun integrante.<br><br><button class='btn btn-primary btn-xs' onClick='clickBtn(@idAnchor)'>Agregar</button>"> Ver Integrantes </button>
+                                            @Html.ActionLink("Ver Integrantes", "employeesDepartment", new { idDept = dept.Deptid}, new { @class = "", @id = idAnchor, @style = "display: none;" })
+
+                                            @Html.ActionLink("Editar Departamento", "editDepartment", new { idDept = dept.Deptid }, new { @class = "btn btn-success btn-xs" })
+
+                                            @{string id = @dept.Deptid + "delete";}
+                                            @Html.ActionLink("Eliminar Departamento", "removeDepartment", new { idDept = dept.Deptid }, new { @class = "btn btn-danger btn-xs", @id = @id, @style = "display: none;" })
+                                            <button class="btn btn-danger btn-xs" onclick="validatePassword('Por favor ingrese su contraseña.', '@id');">Eliminar Departamento</button>
+                                        </td>
+                                    </tr>   
+                                  }   
+                              }
+                          </tbody>
+                        </table>
+                      </div>
+                    </article>        
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section scripts
+{
+    
+}

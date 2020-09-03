@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - LNOHN</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link href="../../Content/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../Content/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="../../Content/css/responsive.dataTables.min.css" rel="stylesheet">
+        <link href="../../Content/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="../../Content/alert/dist/sweetalert.css" rel="stylesheet">
+        <link href="../../Content/css/style.css" rel="stylesheet">
+
+        <link rel="icon" type="image/png" href="../../Content/imgs/favicon.png" />
+
+        @{
+            int message = 1;
+            string messageValue = "";
+            bool error = false;
+            if (ViewData["message"] != null)
+            {
+                message = (int)ViewData["message"];
+            }
+            if (ViewData["messageValue"] != null)
+            {
+                messageValue = (string)ViewData["messageValue"];
+            }
+            if (ViewData["error"] != null)
+            {
+                error = (bool)ViewData["error"];
+            }
+        }
+    </head>
+    <body>
+        <header>
+            <div class="navbar-header " style="padding-right: 10px;">
+                <div class="logo">
+                    <a href="#">
+                        <img src="../../Content/imgs/Laureate2.png" alt="Laureate International Universities logo" class="img-responsive"width="350" height="85">
+                    </a>
+                </div>
+            </div>
+
+            <nav class="navbar navbar-default" style="clear:both">
+                <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">LNO-Honduras</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestión<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Empleados", "employees", "Management")</li>
+                                <li>@Html.ActionLink("Departamentos", "departments", "Management")</li>
+                                <li>@Html.ActionLink("Equipos", "teams", "Management")</li>
+                                <li>@Html.ActionLink("Reportes Especiales", "specialReports", "Management")</li>
+                                <li>@Html.ActionLink("Correos de Confirmación", "confirmEmails", "Management")</li>
+                                <li>@Html.ActionLink("Usuarios", "users", "Management")</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Reportes", "configureReport", "Report")</li>
+                        <li>@Html.ActionLink("Supervisión", "report", "Supervision")</li>
+                        <li>@Html.ActionLink("Bitácora", "showLog", "Log")</li>
+                        <li>@Html.ActionLink("Descargar Estructura", "getStructures", "Structure")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Perfil<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Cambiar Contraseña", "editUser", "Management")</li>
+                                <li>
+                                    <form class="navbar-form navbar-left" role="logout" method="post" action="../../Account/logout">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-default">Cerrar Sessión</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </header>
+
+        <div id="bodyAdmin">
+            <!-- Mensajes de retroalimentación para el usuario. -->
+            <!-- Exito -->
+            @if (message == 2)
+            {
+                <div class="alert alert-success alert-dismissible col-md-8 col-md-offset-3" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><strong>¡Éxito!</strong> @messageValue
+                </div>
+            }
+            <!-- Error -->
+            @if (message == 3)
+            {
+                <div class="alert alert-danger alert-dismissible col-md-8 col-md-offset-3" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span><strong>¡Error!</strong> @messageValue
+                </div>
+            }
+            <!-- Mostrara todo el contenido html que se encuentre en la seccion noError en las vistas que implementen este layout -->
+            @RenderSection("noError", required: false)
+
+            <!-- Si ocurrio un error -->
+            @if (error)
+            {
+                <center>
+                    <img src="../../Content/imgs/oops.png" alt="Opps" class="img-responsive" id="img-oops">
+                    <h2> Ha ocurrido un error.</h2>
+                    <div>
+                        Por favor recargue la página, o contacte nuestro equipo de soporte.
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div>
+                            <h4><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><strong> Soporte:</strong></h4>
+                            <p>support@laureate.net</p>
+                        </div>
+                    </div>
+                </center>      
+                
+            }
+            
+            <!-- Mostrara todo el contenido html que se encuentre en las vistas que utilicen este layout y que este fuera de una seccion -->
+            @RenderBody()
+        </div>
+        <!--/#body-->
+        <hr />
+        <footer style="clear:both">
+            <p>&copy; @DateTime.Now.Year - LNO Honduras</p>
+        </footer>
+
+        <script src="../../Content/js/jquery-2.min.js"></script>
+        <script src="../../Content/js/bootstrap.min.js"></script>
+
+        <script src="../../Content/js/jquery.dataTables.min.js"></script>
+        <script src="../../Content/js/datatables-bootstrap3.js"></script>
+        <script src="../../Content/js/dataTables.responsive.js"></script>
+
+        <script src="../../Content/js/bootstrap-datetimepicker.min.js"></script>
+
+        <script src="../../Content/alert/dist/sweetalert.min.js"></script>
+
+        <script src="../../Content/js/functions.js"></script>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

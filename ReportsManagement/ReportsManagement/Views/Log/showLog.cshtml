@@ -1,0 +1,176 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Bitácora";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        <!-- Mostrara toda la informacion de los departamentos junto con las opciones disponibles -->
+        List<DepartmentBK> departmentsBK = (List<DepartmentBK>)ViewData["departmentsBK"];
+        List<TeamBK> teamsBK = (List<TeamBK>)ViewData["teamsBK"];
+        List<EmployeeBK> employeesBK = (List<EmployeeBK>)ViewData["employeesBK"];
+        <div class="row col-md-12">
+            <div class="navLog col-md-2" style="margin-top:25px">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active2" id="employeesli"><a href="#" onclick="showEmployees();">Empleados</a></li>
+                    <li role="presentation" id="teamsli"><a href="#" onclick="showTeams();">Equipos</a></li>
+                    <li role="presentation" id="departmentsli"><a href="#" onclick="showDepartments();">Departamentos</a></li>
+                </ul>
+            </div>
+            <!-- Empleados -->
+            <div id="employees">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Bitácora de Empleados: </h2>
+                </div>
+                <article class="col-md-8 col-md-offset-1">
+                    <div class="table-responsive" style="clear:both">
+                        <table class="table table-hover display responsive nowrap" id="date-table-log-1" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Equipo</th>
+                                <th>Responsable Acción</th>
+                                <th>Tipo de Acción</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var emp in employeesBK)
+                                {
+                                    <tr>
+                                        <td>@emp.Name</td>
+                                        <td>@emp.Email</td>
+                                        <td>
+                                            @foreach (var team in (List<Department>)@ViewData["teams"])
+                                            {
+                                                if (emp.TeamId == Convert.ToInt32(team.Deptid))
+                                                {
+                                                    @team.DeptName                               
+                                                }
+                                            }
+                                        </td>
+                                        <td>@emp.UserName</td>
+                                        @if (emp.TypeAction == 1)
+                                        {
+                                            <td>Actualizar</td>
+                                        }
+                                        else
+                                        {
+                                            if (emp.TypeAction == 2)
+                                            {
+                                                <td style="color:red">Eliminar</td>
+                                            }
+                                            else
+                                            {
+                                                <td style="color:green">Revertir Eliminación</td>
+                                            }
+                                        }
+                                        <td>@emp.DateAction</td>
+                                        <td>
+                                            @Html.ActionLink("Revertir", "rollBackEmployee", new { idEmp = emp.Id, idEmpBK = emp.IdBK, typeAction = emp.TypeAction }, new { @class = "btn btn-success btn-xs"})
+                                        </td>
+                                    </tr>
+        
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </div>
+        
+            <!-- Equipos -->
+            <div id="teams" style="display:none">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Bítacora de Equipos: </h2>
+                </div>
+                <div class="col-md-8 col-md-offset-1">
+                    <div class="table-responsive" style="clear:both">
+                        <table class="table table-hover display responsive nowrap" id="date-table-log-2" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Equipo</th>
+                                    <th>Responsable</th>
+                                    <th>Correo</th>
+                                    <th>Responsable Acción</th>
+                                    <th>Tipo de Acción</th>
+                                    <th>Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var team in teamsBK)
+                                {
+                                    <tr>
+                                        <td>@team.subdept</td>
+                                        <td>@team.subName</td>
+                                        <td>@team.subEmail</td>
+                                        <td>@team.UserName</td>
+                                        <td>Actualizar</td>
+                                        <td>@team.DateAction</td>
+                                        <td>
+                                            @Html.ActionLink("Revertir", "rollBackTeam", new { idTeam = team.deptID , idTeamBK = team.IdBK }, new { @class = "btn btn-success btn-xs"})
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Departamentos -->
+            <div id="departments" style="display:none">
+                <div class="row col-md-8 col-md-offset-1">
+                    <h2>Bitácora de Departamentos: </h2>
+                </div>
+                <article>
+                    <div class="col-md-8 col-md-offset-1">
+                        <div class="table-responsive" style="clear:both">
+                            <table class="table table-hover display responsive nowrap" id="date-table-log-3" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Departamento</th>
+                                    <th>Responsable Departamento</th>
+                                    <th>Correo</th>
+                                    <th>Responsable Acción</th>
+                                    <th>Tipo de Acción</th>
+                                    <th>Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var dept in departmentsBK)
+                                    {
+                                        <tr>
+                                            <td>@dept.Nombre_Dept</td>
+                                            <td>@dept.Name[0]</td>
+                                            <td>@dept.correo[0]</td>
+                                            <td>@dept.UserName</td>
+                                            <td>Actualizar</td>
+                                            <td>@dept.DateAction</td>
+                                            <td>
+                                                @Html.ActionLink("Revertir", "rollBackDepartment", new { idDept = dept.Id_Dept , idDeptBK = dept.IdBK }, new { @class = "btn btn-success btn-xs"})
+                                            </td>
+                                        </tr>   
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>        
+            </div>
+        </div>       
+    }
+}
+
+@section scripts
+{
+    
+}

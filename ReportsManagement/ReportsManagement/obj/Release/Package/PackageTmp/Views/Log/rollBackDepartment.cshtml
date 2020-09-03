@@ -1,0 +1,103 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Revertir Cambio";
+    Layout = "~/Views/Shared/_Layout2Admin.cshtml";
+    bool error = (bool)ViewData["error"];
+    string stateDepartment = (string)ViewData["stateDepartment"];
+    Department department = new Department();
+    DepartmentMongo departmentMongo = new DepartmentMongo();
+    DepartmentBK departmentBK = new DepartmentBK();
+}
+
+@if(!error)
+{
+    if (stateDepartment != "Deleted")
+    {
+        department = (Department)ViewData["department"];
+        departmentMongo = (DepartmentMongo)ViewData["departmentMongo"];
+    }
+    
+    departmentBK = (DepartmentBK)ViewData["departmentBK"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        <!-- Mostrara toda la informacion de un departamento especifico junto con las opciones disponibles -->
+        <article>
+            <div class="row col-md-8 col-md-offset-2" style="margin-bottom:25px;">
+                <h2>Revertir cambios: </h2>
+            </div>
+            <div class="table-responsive col-md-8 col-md-offset-2" style="clear:both">
+                <table class="table table-hover display responsive nowrap" id="date-table-simple" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Estado bitácora</th>
+                        <th>Estado actual</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Departamento</td>
+                            <td>@departmentBK.Nombre_Dept</td>
+                            @if(stateDepartment != "Deleted")
+                            {
+                                <td>@department.DeptName</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Responsable</td>
+                            <td>@departmentBK.Name[0]</td>
+                            @if(stateDepartment != "Deleted")
+                            {
+                                <td>@departmentMongo.Name[0]</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Correo</td>
+                            <td>@departmentBK.correo[0]</td>
+                            @if(stateDepartment != "Deleted")
+                            {
+                                <td>@departmentMongo.correo[0]</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-8 col-md-offset-2" style="clear:both;">
+                @if (stateDepartment != "Deleted")
+                {
+                    @Html.ActionLink("Revertir", "rollBackDepartmentExecute", new { idDept = department.Deptid, idDeptBK = departmentBK.IdBK }, new { @class = "btn btn-success btn-xs", @id = department.Deptid , @style = "display: none;" })
+                    <button class="btn btn-success" onclick="validatePassword('Por favor ingrese su contraseña.', @department.Deptid);">Revertir</button>
+                }
+                else
+                {
+                    <br />
+                    <p style="color:orange;"><strong><i>No se puede revertir debido a que el departamento fue eliminado.</i></strong></p>
+                }
+            </div>
+        </article>
+    }
+}
+
+
+@section scripts
+{
+
+}
+

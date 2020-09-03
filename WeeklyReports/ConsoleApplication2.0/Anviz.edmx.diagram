@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="821126eca93542918670c5c3ac45f2f0" Name="Diagram1">
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.ActionInfo" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.AddTimeSet" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.BasePara" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.Checkinout" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.CheckLog" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.ClientSet" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.ConfirmEmail" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.DefineField" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.DepartmentsBackup" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.Dept" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.EmployeesBackup" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.FingerClient" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.Holiday" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.LeaveClass" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.MemStat" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.OPinfo" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.OPLog" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.OutProg" Width="1.5" PointX="13.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.Schedule" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.SchTime" Width="1.5" PointX="13.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.SpecialReport" Width="1.5" PointX="13.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.StatItem" Width="1.5" PointX="13.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.Status" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.sysdiagram" Width="1.5" PointX="15.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.T_Checkinout" Width="1.5" PointX="15.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.T_UpdateClient" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.TeamsBackup" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.TimeTable" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.UserCtrLog" Width="1.5" PointX="8.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.Userinfo" Width="1.5" PointX="15.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.Userinfo_BK" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.UserinfoBackup" Width="1.5" PointX="2.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.UserLeave" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.UserPower" Width="1.5" PointX="17.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.UserProfile" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.UserShift" Width="1.5" PointX="17.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.UserTempShift" Width="1.5" PointX="17.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.webpages_Membership" Width="1.5" PointX="10.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.webpages_OAuthMembership" Width="1.5" PointX="17.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.webpages_Roles" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.WeeklyReportsDetail" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.WeeklyReportsState" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.V_Class" Width="1.5" PointX="12.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Anviz_Data_BaseModel.V_UserClient" Width="1.5" PointX="14.75" PointY="17.75" IsExpanded="true" />
+        <AssociationConnector Association="Anviz_Data_BaseModel.FK_ActionInfoDepartment" ManuallyRouted="false" />
+        <AssociationConnector Association="Anviz_Data_BaseModel.FK_ActionInfoEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="Anviz_Data_BaseModel.FK_ActionInfoTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="Anviz_Data_BaseModel.FK_ResponsableAction" ManuallyRouted="false" />
+        <AssociationConnector Association="Anviz_Data_BaseModel.FK_ReportsStateReportsDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="Anviz_Data_BaseModel.webpages_UsersInRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

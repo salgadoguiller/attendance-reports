@@ -1,0 +1,151 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Departamento";
+    Layout = "~/Views/Shared/_Layout2Admin.cshtml";
+    bool error = (bool)ViewData["error"];
+    Department dept = new Department();
+    List<Department> teams = new List<Department>();
+    DepartmentMongo departmentMongo = new DepartmentMongo();
+    List<Employee> allEmployees = new List<Employee>();
+}
+
+@if(!error)
+{
+    dept = (Department)ViewData["dept"];
+    teams = (List<Department>)ViewData["department"];
+    departmentMongo = (DepartmentMongo)ViewData["departmentMongo"];
+    allEmployees = (List<Employee>)ViewData["allEmployees"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        <div class="row col-md-12">
+            <div class="navLog col-md-2" style="margin-top:25px">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active2" id="itemsli"><a href="#" onclick="showItems();">Ver</a></li>
+                    <li role="presentation" id="createli"><a href="#" onclick="showCreate();">Crear</a></li>
+                </ul>
+            </div>
+            <div class="col-md-8 col-md-offset-1">
+                <div class="col-md-12" id="create" style="display:none;">
+                    <br /><br />
+                    <form class="form-horizontal" method="POST" action="addTeam" id="formAdd">
+                        <input type="hidden" class="form-control" value="@dept.Deptid" name="idSupDept">
+                        <div class="form-group">
+                            <label for="inputText" class="col-sm-2 control-label">Nombre Departamento: </label>
+                            <div class="col-sm-10" id="popName" data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Debe ingresar un nombre.">
+                                <input type="text" class="form-control" placeholder="Nombre" value="" name="name" id="name" required>
+                            </div>
+                        </div>
+                        <div class="form-group" id="groupResponsable">
+                            <label for="select" class="col-sm-2 control-label">Responsable: </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="idResponsable" id="responsable">
+                                    @foreach (Employee emp in allEmployees)
+                                    {
+                                        if (emp.TeamId == 33)
+                                        {
+                                            continue;
+                                        }
+                                        <option value="@emp.Id">@emp.Name -- @emp.Email</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="select" class="col-sm-2 control-label">Opciones: </label>
+                            <div class="col-sm-10">
+                                <div id="groupReasign">
+                                    <input type="checkbox" name="reasign" value="reasign" id="reasign"> Reasignar Empleado<br />
+                                </div>
+                                <input type="checkbox" name="empty" value="empty" id="empty" onclick="emptyResponsable('groupResponsable', 'groupReasign', 'reasign', this.id);"> Ningún Responsable <br />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-2">
+                                <button type="button" class="btn btn-success" onclick="validateFormAdd('name','formAdd','popName');">Agregar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-12" id="items">
+                    <article>
+                        <div class="row col-md-12">
+                            <div class="col-md-10">
+                                <h2>Descripción del departamento @Html.DisplayFor(modelItem => dept.DeptName):</h2>
+                            </div>
+                            <div class="col-md-4 col-md-offset-2" style="clear: both;">
+                                <p>Nombre Departamento: <b><i>@Html.DisplayFor(modelItem => dept.DeptName)</i></b></p>
+                                <p>Nombre Responsable: <b><i>@Html.DisplayFor(modelItem => departmentMongo.Name[0])</i></b></p>
+                            </div>
+                        </div>
+                        <div class="table-responsive col-md-12" style="clear:both">
+                            <table class="table table-hover display responsive nowrap" id="date-table" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Equipo</th>
+                                    <th>Responsable</th>
+                                    <th>Correo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Department team in teams)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => team.DeptName)</td>
+                                            @{bool responsable = false;}
+                                            @foreach(GetReportMongo teamMongo in departmentMongo.GetReport)
+                                            {
+                                                if (team.Deptid == Convert.ToInt32(teamMongo.deptID))
+                                                {
+                                                    responsable = true;
+                                                    <td>@Html.DisplayFor(modelItem => teamMongo.subName)</td>
+                                                    <td>@Html.DisplayFor(modelItem => teamMongo.subEmail)</td>                                        
+                                                    break;
+                                                }
+                                            }
+                                            @if(!responsable)
+                                            {
+                                                <td></td>
+                                                <td></td>
+                                            }
+                                            <td>
+                                                @{string idPop = "popTeams" + team.Deptid;
+                                                  int idAnchor = team.Deptid;}
+                                                <button class="btn btn-primary btn-xs" onclick="subDepartmentsVerify('@idPop', '@team.Deptid', '@idAnchor');" id="@idPop" data-toggle="popover" data-trigger="manual" data-placement="left" 
+                                                data-html="true" data-content="Este equipo no tiene ningun subequipo.<br><br><button class='btn btn-primary btn-xs' onClick='clickBtn(@idAnchor);'>Agregar</button>"> Ver Equipos </button>
+                                                @Html.ActionLink("Ver Equipos", "subTeams", new { idTeam = team.Deptid }, new { @class = "", @id = idAnchor, @style = "display: none;" })
+
+                                                @{idPop = "popEmployees" + team.Deptid;
+                                                  idAnchor = 1000000 + team.Deptid;}
+                                                <button class="btn btn-primary btn-xs" onclick="haveEmployeesVerify('@idPop', '@team.Deptid', '@idAnchor');" id="@idPop" data-toggle="popover" data-trigger="manual" data-placement="left" 
+                                                data-html="true" data-content="Este equipo no tiene ningun integrante.<br><br><button class='btn btn-primary btn-xs'onClick='clickBtn(@idAnchor);'>Agregar</button>"> Ver Integrantes </button>
+                                                @Html.ActionLink("Ver Integrantes", "team", new { idTeam = team.Deptid}, new { @class = "", @id = idAnchor, @style = "display: none;" })
+
+                                                @Html.ActionLink("Editar Equipo", "editTeam", new { idTeam = team.Deptid, isDept = 1 }, new { @class = "btn btn-success btn-xs" })
+
+                                                @{string id = @team.Deptid + "delete";}
+                                                @Html.ActionLink("Eliminar Equipo", "removeTeam", new { idSupDept = team.SupDeptid, idTeam = team.Deptid }, new { @class = "btn btn-danger btn-xs", @id = id, @style = "display: none;" })
+                                                <button class="btn btn-danger btn-xs" onclick="validatePassword('Por favor ingrese su contraseña.', '@id');">Eliminar Equipo</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+@section scripts
+{
+
+}

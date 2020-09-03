@@ -1,0 +1,138 @@
+﻿@using ReportsManagement.Models;
+
+@{
+    ViewBag.Title = "Revertir Cambio";
+    Layout = "~/Views/Shared/_Layout2Admin.cshtml";
+    bool error = (bool)ViewData["error"];
+    int type = (int)ViewData["type"];
+    string stateDepartment = (string)ViewData["stateDepartment"];
+    Employee employee = new Employee();
+    EmployeeBK employeeBK = new EmployeeBK();
+    Department team = new Department();
+    Department teamBK = new Department();
+}
+
+@if(!error)
+{
+    if (type != 2)
+    {
+        employee = (Employee)ViewData["employee"];
+        team = (Department)ViewData["team"];
+    }
+    if (stateDepartment != "Deleted")
+    {        
+        teamBK = (Department)ViewData["teamBK"];
+    }
+    employeeBK = (EmployeeBK)ViewData["employeeBK"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        <!-- Mostrara toda la informacion de un departamento especifico junto con las opciones disponibles -->
+        <article>
+            <div class="row col-md-8 col-md-offset-2" style="margin-bottom:25px;">
+                <h2>Revertir cambios: </h2>
+            </div>
+            <div class="table-responsive col-md-8 col-md-offset-2" style="clear:both">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Estado bitácora</th>
+                        <th>Estado actual</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nombre</td>
+                            @if (employeeBK.TypeAction != 3)
+                            {
+                                <td>@employeeBK.Name</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+
+                            @if (type != 2)
+                            {
+                                <td>@employee.Name</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Correo</td>
+                            @if (employeeBK.TypeAction != 3)
+                            {
+                                <td>@employeeBK.Email</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+
+                            @if (type != 2)
+                            {
+                                <td>@employee.Email</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td>Equipo</td>
+                            @if (stateDepartment != "Deleted")
+                            {
+                                if (employeeBK.TypeAction != 3)
+                                {
+                                    <td>@teamBK.DeptName</td>
+                                }
+                                else
+                                {
+                                    <td style="color:red;">Eliminado</td>
+                                }
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+
+                            @if (type != 2)
+                            {
+                                <td>@team.DeptName</td>
+                            }
+                            else
+                            {
+                                <td style="color:red;">Eliminado</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-8 col-md-offset-2" style="clear:both;">
+                @if (stateDepartment != "Deleted")
+                {
+                    @Html.ActionLink("Revertir", "rollBackEmployeeExecute", new { idEmp = employee.Id, idEmpBK = employeeBK.IdBK, type = type }, new { @class = "btn btn-success btn-xs" , @id = employee.Id , @style = "display: none;"})
+                    <button class="btn btn-success" onclick="validatePassword('Por favor ingrese su contraseña.', @employee.Id);">Revertir</button>
+                }
+                else
+                {
+                    <br />
+                    <p style="color:orange;"><strong><i>No se puede revertir debido a que el departamento o equipo al que pertenecía fue eliminado.</i></strong></p>
+                }
+            </div>
+        </article>
+    }
+}
+
+
+@section scripts
+{
+
+}

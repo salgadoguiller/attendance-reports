@@ -1,0 +1,81 @@
+﻿@using ReportsManagement.Models
+@using System.Collections.Generic;
+
+@{
+    ViewBag.Title = "Editar Empleado";
+    Layout = "~/Views/Shared/_Layout2Admin.cshtml";
+    bool error = (bool)ViewData["error"];
+    int isTeam = (int)@ViewData["isTeam"];
+    Employee emp = new Employee();
+}
+
+@if (!error)
+{
+    emp = (Employee)@ViewData["employee"];
+}
+
+
+@section noError 
+{
+    @if(!error)
+    {
+        <!-- Mostrara un formulario para actualizar un empleado -->
+        <article style="clear: both">
+            <div class="col-md-8 col-md-offset-2" style="margin-bottom:30px;">
+                <h3>Actualizando empleado: @Html.DisplayFor(modelItem => emp.Name)</h3>
+            </div>
+            <form class="col-md-8 col-md-offset-2 form-horizontal" method="POST" id="update">
+                <!--
+                    <div class="form-group">
+                        <label for="inputId" class="col-sm-2 control-label">Identificador: </label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="id" value="" name="id">
+                        </div>
+                    </div>
+                -->
+                <!-- Input oculto para enviar el id del empleado en el POST -->
+                <input type="hidden" class="form-control" id="id" value="@emp.Id" name="id">
+
+                <!-- Input oculto para enviar la procedencia del empleado (buscador de empleados, equipo) -->
+                <input type="hidden" class="form-control" id="isTeam" value="@isTeam" name="isTeam">
+
+                <div class="form-group">
+                    <label for="inputText" class="col-sm-2 control-label">Nombre: </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" placeholder="Nombre" value="@emp.Name" name="name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Email: </label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" value="@emp.Email" name="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="select" class="col-sm-2 control-label">Equipo: </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="team" id="team">
+                            @foreach (var team in (List<Department>)@ViewData["teams"])
+                            {
+                                if (emp.TeamId == Convert.ToInt32(team.Deptid))
+                                {
+                                    <option selected="selected" value="@team.Deptid">@Html.DisplayFor(modelItem => team.DeptName)</option>                                
+                                }
+                                else
+                                {
+                                    <option value="@team.Deptid">@Html.DisplayFor(modelItem => team.DeptName)</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-success"  onclick="validateFormEmployees();">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+        </article>
+    }    
+}

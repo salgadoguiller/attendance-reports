@@ -1,0 +1,166 @@
+﻿@model IEnumerable<ReportsManagement.Models.Employee>
+@using ReportsManagement.Models
+
+@{
+    ViewBag.Title = "Editar Departamento";
+    Layout = "~/Views/Shared/_Layout2Admin.cshtml";
+    bool error = (bool)ViewData["error"];
+}
+
+@section noError 
+{
+    @if(!error)
+    {
+        Department department = (Department)ViewData["department"];
+        List<Employee> allEmployees = (List<Employee>)ViewData["allEmployees"];
+        DepartmentMongo departmentMongo = (DepartmentMongo)ViewData["departmentMongo"];
+        int idCurrentResponsable = -1;
+        if(departmentMongo.Name[0] != "")
+        {
+            if (allEmployees.Find(param => param.Name == departmentMongo.Name[0]) != null)
+            {
+                idCurrentResponsable = allEmployees.Find(param => param.Name == departmentMongo.Name[0]).Id;            
+            }
+        }
+        
+        <!-- Formulario para editar los equipos -->
+        <article style="clear: both">
+            <div class="col-md-8 col-md-offset-2" style="margin-bottom:30px;">
+                <h3>Actualizando información del departamento: @department.DeptName</h3>
+            </div>
+            <form class="col-md-8 col-md-offset-2 form-horizontal" method="POST" id="update">
+                <!-- Input oculto para enviar el id del departamento en el POST -->
+                <input type="hidden" class="form-control" value="@department.Deptid" name="idDept" id="idDept">
+
+                <!-- Input oculto para enviar el responsable anterior del departamento -->
+                <input type="hidden" class="form-control" value="@departmentMongo.Name[0]" name="oldResponsable" id="oldResponsable">
+
+                <!-- Input oculto para enviar el email del responsable anterior del departamento -->
+                <input type="hidden" class="form-control" value="@departmentMongo.correo[0]" name="oldEmail" id="oldEmail">
+
+                <!-- Input oculto para enviar el nombre anterior del departamento -->
+                <input type="hidden" class="form-control" value="@department.DeptName" name="oldName">
+
+            
+                <div class="form-group">
+                    <label for="inputText" class="col-sm-2 control-label">Nombre Departamento: </label>
+                    <div class="col-sm-10" id='divName' data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Ingrese un nombre para el departamento.">
+                        <input type="text" class="form-control" placeholder="Nombre" value="@department.DeptName" name="name" id="name">
+                    </div>
+                </div>
+
+                <!-- Este input lo utilizo para enviar el valor del input responsable que esta desabilitado -->
+                <!-- Si el input esta desabilitado no se envia el valor en el POST -->
+                <input type="hidden" class="form-control" value="@Html.DisplayFor(modelItem => departmentMongo.Name[0])" name="responsableHidden">
+                <div class="form-group">
+                    <label for="inputText" class="col-sm-2 control-label">Responsable Actual: </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Responsable" value="@Html.DisplayFor(modelItem => departmentMongo.Name[0])" name="" disabled>
+                    </div>
+                </div>
+
+                <!-- Este input lo utilizo para enviar el valor del input email que esta desabilitado -->
+                <!-- Si el input esta desabilitado no se envia el valor en el POST -->
+                <input type="hidden" class="form-control" value="@departmentMongo.correo[0]" name="emailHidden">
+                <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Correo Electrónico: </label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" placeholder="Correo Electrónico" value="@departmentMongo.correo[0]" name="" disabled>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="options">Opciones Para Responsable: </label>
+                    <div class='col-sm-10'>
+                        @if (idCurrentResponsable != -1)
+                        {
+                            <input type="radio" name="options" value="employee" id="inputEmployee" checked onclick="optionsEdit()"><span> Empleado</span><br>
+                            <input type="radio" name="options" value="other" id="inputOther" onclick="optionsEdit();"><span> Otro</span><br>
+                            <input type="radio" name="options" value="anyone" id="inputAnyone" onclick="optionsEdit();"><span> Ninguno</span>
+                        }
+                        else
+                        {
+                            <input type="radio" name="options" value="employee" id="inputEmployee" onclick="optionsEdit()"><span> Empleado</span><br>
+                            <input type="radio" name="options" value="other" id="inputOther" onclick="optionsEdit();"><span> Otro</span><br>
+                            <input type="radio" name="options" value="anyone" id="inputAnyone" checked onclick="optionsEdit();"><span> Ninguno</span>
+                        }
+                    </div>
+                </div>
+
+                <div id="divEmployee" style="display:block;">
+                    <div class="form-group" id="groupEmployee">
+                        <label for="select" class="col-sm-2 control-label">Nuevo Responsable: </label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="employee" id="employee">
+                                @foreach (Employee emp in @allEmployees)
+                                {
+                                    if (emp.TeamId == 33)
+                                    {
+                                        continue;
+                                    }
+                                    // Seleccionael empleado en el select
+                                    if (idCurrentResponsable == emp.Id)
+                                    {
+                                        <option selected="selected" value="@emp.Id">@emp.Name -- @emp.Email</option>
+                                    }
+                                    // No selecciona el empleado en el select
+                                    else
+                                    {
+                                        <option value="@emp.Id">@emp.Name -- @emp.Email</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="select" class="col-sm-2 control-label">Opciones: </label>
+                        <div class="col-sm-10">
+                            <div id="groupReasign">
+                                <input type="checkbox" name="reasign" value="reasign" id="reasign"> Reasignar Empleado<br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="divOther" style="display:none;">
+                    <div class="form-group">
+                        <label for="inputText" class="col-sm-2 control-label">Nuevo Responsable: </label>
+                        <div class="col-sm-10" id='divResponsable' data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Ingrese un responsable para el departamento.">
+                            <input type="text" class="form-control" placeholder="Responsable" value="" name="responsable" id="responsable">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Nuevo Correo Electrónico: </label>
+                        <div class="col-sm-10" id='divEmail' data-toggle="popover" data-trigger="manual" data-placement="top" data-content="Ingrese un email para el responsable departamento.">
+                            <input type="email" class="form-control" placeholder="Correo Electrónico" value="" name="email" id="email">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="divAnyone" style="display:none;">
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-success"  onclick="validateFormDepartments();">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+        </article>
+    }
+}
+
+@section scripts 
+{
+    @if (!error)
+    {
+        <script>
+            $(document).ready(function () {
+                optionsEdit();
+            });
+        </script>
+    }
+}
